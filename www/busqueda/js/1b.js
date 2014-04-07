@@ -61,7 +61,7 @@ function autocompletar()
     select: function(event,ui)
         {
             //Envio al usuario a la vista 3
-            redirigir("2c.html?idLocal="+ui.item.id);
+            redirigir("5a.html?idLocal="+ui.item.id);
         }
     });
 }
