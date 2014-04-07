@@ -3,7 +3,8 @@ $(document).ready(function()
     /*Funciones autoejecutables*/
     (function()
      {
-         //getCiudades();
+         getBanner(null,"../");
+         getCiudades();
          autocompletar();
      })();
     
@@ -29,13 +30,17 @@ function getCiudades()
     var datos={
     };
     var xml=ajax(url,datos);
-    $("",xml).each(function()
+    if(xml!=null)
     {
-        var valor,texto;
-        
-        var html="<option value='"+valor+"'>"+texto+"</option>";
-        $("#ciudades").append(html);
-    });
+        $("",xml).each(function()
+        {
+            var valor,texto;
+
+            var html="<option value='"+valor+"'>"+texto+"</option>";
+            $("#ciudades").append(html);
+        });
+    }
+    
 }
 
 function getCentrosComercialesByCiudad(idCiudad)
@@ -46,13 +51,17 @@ function getCentrosComercialesByCiudad(idCiudad)
         idCiudad:idCiudad
     };
     var xml=ajax(url,datos);
-    $("",xml).each(function()
+    if(xml!=null)
     {
-        var valor,texto;
-        
-        var html="<option value='"+valor+"'>"+texto+"</option>";
-        $("#centroscomerciales").append(html);
-    });
+        $("",xml).each(function()
+        {
+            var valor,texto;
+
+            var html="<option value='"+valor+"'>"+texto+"</option>";
+            $("#centroscomerciales").append(html);
+        });
+    }
+    
 }
 function getCategoriasByCentroComercial(idCentroComercial)
 {
@@ -62,13 +71,17 @@ function getCategoriasByCentroComercial(idCentroComercial)
         idCentroComercial:idCentroComercial
     };
     var xml=ajax(url,datos);
-    $("",xml).each(function()
+    if(xml!=null)
     {
-        var valor,texto;
-        
-        var html="<option value='"+valor+"'>"+texto+"</option>";
-        $("#categorias").append(html);
-    });
+        $("",xml).each(function()
+        {
+            var valor,texto;
+
+            var html="<option value='"+valor+"'>"+texto+"</option>";
+            $("#categorias").append(html);
+        });
+    }
+    
 }
 /*Esta funcion va  a la vista 2a y le envia los parametros necesarios*/
 function goTo2a()
@@ -93,17 +106,21 @@ function autocompletar()
     var datos={
         
     };
-    var xml=ajax(url,datos);
-    $("",xml).each(function()
+    if(xml!=null)
     {
-        var texto;
-        locales.push(texto);
-    });
+        var xml=ajax(url,datos);
+        $("",xml).each(function()
+        {
+            var idL,nombreL;
+            locales.push({id:idL,value:nombreL});
+        });
+    }
+    
     
     
     $( "#nombreLocal" ).autocomplete({
-    source: locales,
-    select: function(event,ui)
+        source: locales,
+        select: function(event,ui)
         {
             //Envio al usuario a la vista 3
             redirigir("2b.html?idLocal="+ui.item.id);

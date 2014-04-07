@@ -3,6 +3,7 @@ $(document).ready(function()
 {
     $(function()
       {
+          getBanner(null,"../");
           var parametros=getUrlVars();
           getInfoLocal(parametros["idLocal"]);
       }
@@ -16,15 +17,19 @@ function getInfoLocal(idLocal)
         idLocal:idLocal
     };
     var xml=ajax(url,datos);
-    $("",xml).each(function()
+    if(xml!=null)
     {
-        var logo,local,piso,seccion,horario,descripcion;
-        
-        $("#logo").attr("src",logo);
-        $("#local").text(local);
-        $("#piso").text(piso);
-        $("#seccion").text(seccion);
-        $("#horario").text(horario);
-        $("#descripcion").text(descripcion);
-    });
+        $("",xml).each(function()
+        {
+            var logo,local,piso,seccion,horario,descripcion;
+
+            $("#logo").attr("src",logo);
+            $("#local").text(local);
+            $("#piso").text(piso);
+            $("#seccion").text(seccion);
+            $("#horario").text(horario);
+            $("#descripcion").text(descripcion);
+        });
+    }
+    
 }

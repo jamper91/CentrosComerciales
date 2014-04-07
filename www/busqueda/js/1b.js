@@ -2,6 +2,7 @@ $(document).ready(function()
 {
     (function()
      {
+         getBanner(null,"../");
          getCiudades();
      });
     /*Esta funcion se encarga de caputara cuando el usario le da clic al boton buscar*/
@@ -22,13 +23,17 @@ function getCiudades()
     var datos={
     };
     var xml=ajax(url,datos);
-    $("",xml).each(function()
+    if(xml!=null)
     {
-        var valor,texto;
-        
-        var html="<option value='"+valor+"'>"+texto+"</option>";
-        $("#ciudades").append(html);
-    });
+        $("",xml).each(function()
+        {
+            var valor,texto;
+
+            var html="<option value='"+valor+"'>"+texto+"</option>";
+            $("#ciudades").append(html);
+        });
+    }
+    
 }
 /*Esta funcion se encarga de obtener los nombre de los locales para que se pueda ver la funcion de autocompletar*/
 function autocompletar()
@@ -42,13 +47,15 @@ function autocompletar()
         
     };
     var xml=ajax(url,datos);
-    $("",xml).each(function()
+    if(xml!=null)
     {
-        var idC,nombreC;
-        locales.push({id: idC,value:nombreC});
-    });
-    
-    
+        $("",xml).each(function()
+        {
+            var idC,nombreC;
+            locales.push({id: idC,value:nombreC});
+        });
+    }
+
     $( "#nombreCentroComercial" ).autocomplete({
     source: locales,
     select: function(event,ui)

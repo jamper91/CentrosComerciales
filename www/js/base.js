@@ -26,9 +26,9 @@ function ajax(url, datos)
         {
             retornar=xml;
         }
-    }).DONE(function()
+    }).done(function()
     {
-        return xml;
+        return retornar;
     });
 }
 
@@ -53,4 +53,33 @@ function getUrlVars()
 function redirigir(url)
 {
     $(location).attr("href",url);
+}
+/*Esta funcion se encarga de obtener el banner correspondiente a la vista*/
+function getBanner(vista,ruta)
+{
+    if(vista!=null)
+    {
+        log("base","getBanner","la vista no es nula");
+    }else{
+        log("base","getBanner","la vista es nula");
+        var url="";
+        var datos={
+        };
+        var xml=ajax(url,datos);
+        if(xml!=null)
+        {
+            log("base","getBanner","el xml no es nulo");
+            $("",xml).each(
+                function()
+                {
+                    var urlImagen;
+                    $("#banner").attr("src",urlImagen);
+                }
+            );
+        }else{
+            log("base","getBanner","el xml es nulo");
+            $("#banner").attr("src",ruta+"js/owl-carousel/img/responsive.png");
+        }
+        
+    }
 }

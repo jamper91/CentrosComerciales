@@ -3,6 +3,7 @@ $(document).ready(function(e)
 {
     (function()
      {
+         getBanner(null,"../");
          var parametros=getUrlVars();
          getLocales(parametros["idCiudad"],parametros["idCentroComercial"],parametros["idCategoria"]);
      });
@@ -18,13 +19,16 @@ function getLocales(idCiudad,idCentroComercial,idCategoria)
         idCategoria:idCategoria
     };
     var xml=ajax(url,datos);
-    $("",xml).each(function()
+    if(xml!=null)
     {
-        var nombreLocal,idLocal;
-        
-        var html="<li><a href='3.html?idLocal=$1'>$2</a></li>";
-        html=html.replace("$1",idLocal);
-        html=html.replace("$2",nombreLocal)
-        $("#locales").append(html);
-    });
+        $("",xml).each(function()
+        {
+            var nombreLocal,idLocal;
+            var html="<li><a href='3.html?idLocal=$1'>$2</a></li>";
+            html=html.replace("$1",idLocal);
+            html=html.replace("$2",nombreLocal)
+            $("#locales").append(html);
+        });
+    }
+    
 }
