@@ -1,0 +1,47 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+	<title>Centros Comerciales</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+	<style type="text/css">
+		/* Prevent copy paste for all elements except text fields */
+		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+		input, textarea  { -webkit-user-select:text; }
+		body { background-color:white; color:black }
+	</style>
+	<script src='intelxdk.js'></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <!--<script type="text/javascript" src="js/jq.appframework.js"></script>-->
+    <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
+	<script type="text/javascript">
+		/* This code is used to run as soon as Intel activates */
+		var onDeviceReady=function(){
+		//hide splash screen
+		intel.xdk.device.hideSplashScreen();
+		};
+		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+	</script>
+    
+    <!--    Elementos para el carrousel-->
+    <link rel="stylesheet" href="js/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="js/owl-carousel/owl.theme.css">
+    <script src="js/owl-carousel/owl.carousel.min.js"></script>
+</head>
+<body>
+	<!-- content goes here-->
+    
+    
+    <!--Carrousel-->
+    
+
+    <div id="owl-demo" class="owl-carousel owl-theme">
+        <div class="item"><img src="js/owl-carousel/img/responsive.png" alt="The Last of us"></div>
+        <div class="item"><img src="js/owl-carousel/img/tons.png" alt="GTA V"></div>
+        <div class="item"><img src="js/owl-carousel/img/zombie.png" alt="Mirror Edge"></div>
+    </div>
+
+</body>
+</html>
