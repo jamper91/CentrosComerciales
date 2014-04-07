@@ -86,13 +86,10 @@ function goTo2a()
 function autocompletar()
 {
     var locales=new Array();
-    /*locales.push("MCDonals");
-    locales.push("El corral");
-    locales.push("El Exito");*/
     locales.push({id:1, value:"MCDonals"});
     locales.push({id:2, value:"El corral"});
     locales.push({id:3, value:"El Exito"});
-    /*var url="";
+    var url="";
     var datos={
         
     };
@@ -101,7 +98,7 @@ function autocompletar()
     {
         var texto;
         locales.push(texto);
-    });*/
+    });
     
     
     $( "#nombreLocal" ).autocomplete({
