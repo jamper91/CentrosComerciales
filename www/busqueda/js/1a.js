@@ -3,20 +3,21 @@ $(document).ready(function()
     /*Funciones autoejecutables*/
     (function()
      {
-         getCiudades();
+         //getCiudades();
+         autocompletar();
      })();
     
     /*Function que se activa al cambiar un elemento del select ciudades*/
     $("#ciudades").change(function()
     {
-        Obtengo el elemento seleccionado
+        /*Obtengo el elemento seleccionado*/
         var idCiudad=$("#ciudades").val();
         getCentrosComercialesByCiudad(idCiudad);
     });
     /*Funcion que se activa al cambiar un elemento del select centros comerciales*/
     $("#centroscomerciales").change(function()
     {
-        Obtengo el elemento seleccionado
+        /*Obtengo el elemento seleccionado*/
         var idCentroComercial=$("#centroscomerciales").val();
         getCategoriasByCentroComercial(idCentroComercial);
     });
@@ -67,6 +68,41 @@ function getCategoriasByCentroComercial(idCentroComercial)
         
         var html="<option value='"+valor+"'>"+texto+"</option>";
         $("#categorias").append(html);
+    });
+}
+/*Esta funcion va  a la vista 2a y le envia los parametros necesarios*/
+function goTo2a()
+{
+    //Obtengo las variables a enviar
+    var idCiudad,idCentroComercial,idCategoria
+    idCiudad=$("#ciudades").val();
+    idCentroComercial=$("#centroscomerciales").val();
+    idCategoria= $("#categorias").val();
+    
+    //Redirijo
+    $(location).attr("href","2a.html?idCiudad="+idCiudad+"&idCentroComercial="+idCentroComercial+"&idCategoria="+idCategoria);
+}
+/*Esta funcion se encarga de obtener los nombre de los locales para que se pueda ver la funcion de autocompletar*/
+function autocompletar()
+{
+    var locales=[];
+    locales.push("McDonals");
+    locales.push("El Corral");
+    locales.push("Exito");
+    var url="";
+    var datos={
+        idCentroComercial:idCentroComercial
+    };
+    var xml=ajax(url,datos);
+    $("",xml).each(function()
+    {
+        var texto;
+        locales.push(texto);
+    });
+    
+    
+    $( "#locales" ).autocomplete({
+    source: locales
     });
 }
             

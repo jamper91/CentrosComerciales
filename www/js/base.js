@@ -34,5 +34,18 @@ function ajax(url, datos)
 
 function log(pagina, funcion, mensaje)
 {
-    console.log(pagina+"-"+funcion": "+mensaje);
+    console.log(pagina+"-"+funcion+"-"+mensaje);
+}
+/*Funcion que se encarga de obtener las variables que se envian por la url*/
+function getUrlVars() 
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
 }
