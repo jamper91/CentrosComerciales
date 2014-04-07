@@ -74,7 +74,7 @@ function getCategoriasByCentroComercial(idCentroComercial)
 function goTo2a()
 {
     //Obtengo las variables a enviar
-    var idCiudad,idCentroComercial,idCategoria
+    var idCiudad,idCentroComercial,idCategoria;
     idCiudad=$("#ciudades").val();
     idCentroComercial=$("#centroscomerciales").val();
     idCategoria= $("#categorias").val();
@@ -85,24 +85,42 @@ function goTo2a()
 /*Esta funcion se encarga de obtener los nombre de los locales para que se pueda ver la funcion de autocompletar*/
 function autocompletar()
 {
-    var locales=[];
-    locales.push("McDonals");
-    locales.push("El Corral");
-    locales.push("Exito");
-    var url="";
+    var locales=new Array();
+    /*locales.push("MCDonals");
+    locales.push("El corral");
+    locales.push("El Exito");*/
+    locales.push({id:1, value:"MCDonals"});
+    locales.push({id:2, value:"El corral"});
+    locales.push({id:3, value:"El Exito"});
+    /*var url="";
     var datos={
-        idCentroComercial:idCentroComercial
+        
     };
     var xml=ajax(url,datos);
     $("",xml).each(function()
     {
         var texto;
         locales.push(texto);
-    });
+    });*/
     
     
-    $( "#locales" ).autocomplete({
-    source: locales
+    $( "#nombreLocal" ).autocomplete({
+    source: locales,
+    select: function(event,ui)
+        {
+            //Envio al usuario a la vista 3
+            redirigir("2b.html?idLocal="+ui.item.id);
+        }
     });
+}
+/*Esta funcion va  a la vista 2b y le envia los parametros necesarios*/
+function goTo2a()
+{
+    //Obtengo las variables a enviar
+    var nombreLocal;
+    nombreLocal=$("#nombreLocal").val();
+    
+    //Redirijo
+    $(location).attr("href","2b.html?nombreLocal="+nombreLocal);
 }
             

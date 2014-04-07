@@ -49,3 +49,8 @@ function getUrlVars()
     }
     return vars;
 }
+/*Redirije la aplicacion a la url indicada*/
+function redirigir(url)
+{
+    $(location).attr("href",url);
+}
