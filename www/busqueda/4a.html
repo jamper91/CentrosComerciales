@@ -13,9 +13,13 @@
 	<script src='../intelxdk.js'></script>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <!--Jquery UI-->
+    <link rel="stylesheet" href="../css/no-theme/jquery-ui-1.10.4.custom.min.css">
+    <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
+    <!--Fin Jquery UI-->
     <!--<script type="text/javascript" src="js/jq.appframework.js"></script>-->
     <script type="text/javascript" src="../js/base.js"></script>
-    <script type="text/javascript" src="js/3.js"></script>
+    <script type="text/javascript" src="js/4a.js"></script>
 	<script type="text/javascript">
 		/* This code is used to run as soon as Intel activates */
 		var onDeviceReady=function(){
@@ -28,18 +32,21 @@
 
 </head>
 <body>
-	
-    <img id="logo" />
-    Local: <label id="nombre"></label><br/>
-    Piso: <label id="piso"></label><br/>
-    Seccion: <label id="seccion"></label><br/>
-    Horario: <label id="horario"></label><br/>
-    Descripcion: <label id="descripcion"></label><br/>
-
-    <input type="button" id="comoLlegar" value="¿Como llegar?" />
-    <input type="button" id="promociones" value="Promociones y descuentos" />
-    <input type="button" id="informacionCentroComercial" value="Informacion del Centro Comercial" />
-    <input type="button" id="masInformacion" value="Más informacioón" />
+    <div id="contenedor1">
+        <p>
+            ¿En donde estás?
+            Escribe el nombre de la tienda que ves en este momento
+        </p>
+        <input type="text" id="origen"><br/>
+    </div>
+    <div id="contenedor2" style="display:none">
+        <p>
+        ¿A donde quieres ir?
+        </p>
+        <input type="text" id="fin" />
+    </div>
+    
+    
     
     <img id="banner" />
 </body>

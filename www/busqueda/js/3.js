@@ -8,6 +8,27 @@ $(document).ready(function()
           getInfoLocal(parametros["idLocal"]);
       }
      );
+    $("#comoLlegar").click(
+        function(e)
+        {
+            redirigir("4a.html");
+        }
+    );
+    $("#promociones").click(
+        function(e)
+        {
+        }
+    );
+    $("#informacionCentroComercial").click(
+        function(e)
+        {
+        }
+    );
+    $("#masInformacion").click(
+        function(e)
+        {
+        }
+    );
 });
 
 function getInfoLocal(idLocal)

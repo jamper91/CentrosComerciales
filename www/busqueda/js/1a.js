@@ -123,7 +123,10 @@ function autocompletar()
         select: function(event,ui)
         {
             //Envio al usuario a la vista 3
-            redirigir("2b.html?idLocal="+ui.item.id);
+            var url="2b.html?idLocal=$1";
+            url=url.replace("$1",ui.item.id);
+            log("1a","autocompletar","url: "+url);
+            //redirigir("2b.html?idLocal="+ui.item.id);
         }
     });
 }
