@@ -25,7 +25,7 @@ function autocompletar()
     var locales=new Array();
     locales.push({id:1, value:"MCDonals"});
     locales.push({id:2, value:"El corral"});
-    locales.push({id:3, value:"El Exito"});
+    locales.push({id:12, value:"El Exito"});
     var url="";
     var datos={
         
@@ -62,7 +62,7 @@ function autocompletar()
                 url=url.replace("$1",origen);
                 url=url.replace("$2",fin);
                 log("4a","autocompletar","Url:"+url);
-                //redirigir(url);
+                redirigir(url);
             }
         }
     });
