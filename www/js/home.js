@@ -16,7 +16,7 @@ function banner()
 {
     var url="";
     var datos={
-        id=2
+        id:2
     }
     var xml=ajax(url,datos);
     $(xml,"item").each(function()
