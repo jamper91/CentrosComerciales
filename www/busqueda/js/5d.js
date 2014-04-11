@@ -31,12 +31,12 @@ function getPisos(idCentroComercial)
         });
     }else
     {
-        var nombre="Piso 1",id="1";
+        var nombre="Piso 1",id=1;
         var html="<li><a href='5e.html?idPiso=$1'>$2</a></li>";
         html=html.replace("$1",id);
         html=html.replace("$2",nombre);
         $("#pisos").append(html);
-        nombre="Piso 2",id="2";
+        nombre="Piso 2",id=2;
         html="<li><a href='5e.html?idPiso=$1'>$2</a></li>";
         html=html.replace("$1",id);
         html=html.replace("$2",nombre);
