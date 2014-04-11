@@ -51,6 +51,13 @@ function getInfoLocal(idLocal)
             $("#horario").text(horario);
             $("#descripcion").text(descripcion);
         });
+    }else{
+        $("#logo").attr("src",logo);
+        $("#local").text("Local: "+idLocal);
+        $("#piso").text("Piso: "+idLocal);
+        $("#seccion").text("Seccion: "+idLocal);
+        $("#horario").text("Horario: "+idLocal);
+        $("#descripcion").text("Descripcion: "+idLocal);
     }
     
 }
