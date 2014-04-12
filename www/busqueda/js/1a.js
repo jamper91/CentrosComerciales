@@ -1,9 +1,11 @@
+
+
 $(document).ready(function()
 {
     /*Funciones autoejecutables*/
     (function()
      {
-         getBanner(null,"../");
+         //getBanner(null,"../");
          getCiudades();
          autocompletar();
      })();
@@ -23,23 +25,67 @@ $(document).ready(function()
         getCategoriasByCentroComercial(idCentroComercial);
     });
 });
+
+
 /*Se encarga de obtener las ciudades de la base de datos y mostrarlas en un select*/
 function getCiudades()
 {
-    var url="";
+    
+
+    var url="http://192.168.0.13/CentrosComercialesWeb/Ciudades/index.xml";
+   /* url="http://hoyenlahistoria.ejemplosprogramacion.co/Historias/today.xml?day=9&month=4";
+    
+    url="http://time.jsontest.com/";*/
     var datos={
     };
-    var xml=ajax(url,datos);
-    if(xml!=null)
-    {
-        $("",xml).each(function()
+    
+    /*$.ajax({
+        url: url,
+        type: "GET",
+        data: datos,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        crossDomain: true,
+        error: function( jqXHR, textStatus, errorThrown )
         {
-            var valor,texto;
-
-            var html="<option value='"+valor+"'>"+texto+"</option>";
-            $("#ciudades").append(html);
-        });
-    }
+            log("base","ajax","jqXHR: "+imprimirObjeto(jqXHR));
+            log("base","ajax","textStatus: "+textStatus);
+            log("base","ajax","errorThrown: "+imprimirObjeto(errorThrown));
+        },
+        success: function(data)
+        {
+            log("1a","getCiudades","el xml no es nulo")
+            $("ciudades",data).each(function()
+            {
+                var obj=$(this).find("Ciudade");
+                var valor,texto;
+                valor=$("id",obj).text();
+                texto=$("nombre",obj).text();
+                var html="<option value='"+valor+"'>"+texto+"</option>";
+                $("#ciudades").append(html);
+            });
+        }
+    });*/
+    
+    ajax(url,datos,
+                 function(xml)
+                 {
+                     if(xml!=null)
+                    {
+                        log("1a","getCiudades","el xml no es nulo:"+ xmlToString(xml));
+                        $("ciudades",xml).each(function()
+                        {
+                            var obj=$(this).find("Ciudade");
+                            var valor,texto;
+                            valor=$("id",obj).text();
+                            texto=$("nombre",obj).text();
+                            var html="<option value='"+valor+"'>"+texto+"</option>";
+                            $("#ciudades").append(html);
+                        });
+                    }else{
+                        log("1a","getCiudades","el xml es nulo")
+                    }
+                 });
+    
     
 }
 

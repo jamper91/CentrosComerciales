@@ -10,7 +10,8 @@
 		input, textarea  { -webkit-user-select:text; }
 		body { background-color:white; color:black }
 	</style>
-	<script src='../intelxdk.js'></script>
+	<script type="text/javascript" charset="utf-8" src='../intelxdk.js'></script>
+    <script type="text/javascript" src="../xhr.js"></script>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
     <!--Jquery UI-->
@@ -18,12 +19,15 @@
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
     <!--Fin Jquery UI-->
     <script type="text/javascript" src="../js/base.js"></script>
+    
     <script type="text/javascript" src="js/1a.js"></script>
+    
 	<script type="text/javascript">
 		/* This code is used to run as soon as Intel activates */
-		var onDeviceReady=function(){
-		//hide splash screen
-		intel.xdk.device.hideSplashScreen();
+		var onDeviceReady=function()
+        {
+            //hide splash screen
+            intel.xdk.device.hideSplashScreen();
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 	</script>
@@ -34,7 +38,8 @@
 	
     
 Buscar por centro comercial    <br/>
-Ciudad: <select id="ciudades">
+Ciudad: 
+<select id="ciudades">
     
 </select>
 Centro Comercial:

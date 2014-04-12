@@ -15,20 +15,28 @@ var datos = {
 };
 
 */
-function ajax(url, datos)
+function ajax(url2, datos, callback)
 {
     var retornar=null;
     $.ajax({
-        url: url,
-        type: "POST",
+        url: url2,
+        type: "GET",
         data: datos,
-        success: function(xml)
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        crossDomain: true,
+        error: function( jqXHR, textStatus, errorThrown )
         {
-            retornar=xml;
+            log("base","ajax","textStatus: "+textStatus);
+            log("base","ajax","errorThrown: "+imprimirObjeto(errorThrown));
+        },
+        success: function(data)
+        {
+            log("base","ajax","success: entre "+xmlToString(data));
+            retornar=data
         }
     }).done(function()
     {
-        return retornar;
+        callback(retornar);
     });
 }
 
@@ -83,3 +91,26 @@ function getBanner(vista,ruta)
         
     }
 }
+function imprimirObjeto(object)
+{
+var output = '';
+for (var property in object) {
+  output += property + ': ' + object[property]+'; ';
+}
+return output;
+
+
+}
+function xmlToString(xmlData) { 
+
+    var xmlString;
+    //IE
+    if (window.ActiveXObject){
+        xmlString = xmlData.xml;
+    }
+    // code for Mozilla, Firefox, Opera, etc.
+    else{
+        xmlString = (new XMLSerializer()).serializeToString(xmlData);
+    }
+    return xmlString;
+}  
