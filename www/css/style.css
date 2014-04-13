@@ -1,0 +1,129 @@
+@font-face {
+	font-family: Allerta;
+	src: url('fonts/Allerta-Regular.ttf');
+}
+@font-face {
+	font-family: PT Sans Normal;
+	src: url('fonts/PT_Sans-Web-Regular.ttf');
+}
+@font-face {
+	font-family: PT Sans Bold;
+	src: url('fonts/PT_Sans-Web-Bold.ttf');
+}
+
+body{
+ 
+    background-image: url(../images/background.jpg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.opciones{
+    width: 100%;
+    height: 17px;
+    padding-right: 15px;
+}
+.opciones a{
+    width: 27px;
+    height: 33px;
+    display: inline-block;
+    float: right;
+    padding-right: 10px;
+    background-size: contain;
+}
+.opciones .btnOpciones{
+    background-image: url(../images/icoconfig.svg);
+}
+.opciones .btnRecargar{
+    background-image: url(../images/recargar.svg);
+}
+
+.cabezera {
+    align-content: center;
+    width: 100%;
+    
+}
+.cabezera .logo
+{
+    align-content: center;
+    display: block;
+    width: 278px;
+    height: 139px;
+    background-image: url(../images/imagocc.svg);
+}
+.cabezera .slogan
+{
+    display: block;
+    font-family: Allerta;
+    font-size: 24px;
+    color: #033486;
+    text-align: center;
+}
+.contenido{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.menu{
+    width: 100%;   
+    padding: 0px;
+}
+.menu li{
+    list-style-type: none;
+}
+
+.menu li:first-child
+{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.menu li:last-child
+{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 5px;
+}
+.menu li{
+    font-family: PT Sans Normal;
+    font-size: 6vw;
+    color: #7d7d7d;
+    background-color: #ffffff;
+    opacity:0.7;
+    padding-left: 65px;
+    height: 45px;
+    line-height: 45px;
+    background-position: 15px 9px;
+    background-repeat: no-repeat;
+    background-size: 35px 35px;
+    padding-top: 7px;
+    
+}
+.menu li:active{
+    opacity:1;
+}
+.menu li a{
+    display: inline-block;
+    text-decoration: none;
+    color: #7d7d7d;
+    /*width: 100%;*/
+}
+.menu .go{
+    display: inline-block;
+    height: 45px;
+    width: 25px;
+    float: right;
+    background-image: url(../images/arrow-right.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+.menu .buscarTiendas{
+    background-image: url(../images/tienda.svg);
+}
+.menu .buscarCentros{
+    background-image: url(../images/cc.svg);
+}
+.menu .promociones{
+    background-image: url(../images/tag.svg);
+}
+.menu .noticias{
+    background-image: url(../images/megaphone.svg);
+}
