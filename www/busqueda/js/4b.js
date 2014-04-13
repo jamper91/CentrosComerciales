@@ -49,7 +49,7 @@ $(document).ready(function()
 /*Esta funcion se encarga de obtener las coordenadas de los locales dados*/
 function  obtenerCoordenadas(idO, idF, callback)
 {
-    alert("entre");
+    alert("entre con "+idO+" y "+idF);
     idF1=idF;
     
     /*Obtencion de datos*/
@@ -170,8 +170,8 @@ function analisis()
         /* Habilito el boton continuar */
         $("#continuar").css("display","block");
         /*Obtengo el id de la escalera del siguiente piso*/
-        idE=obtenerEscalera(p0+1,bE0);
-        idO1=idE;
+        obtenerEscalera(parseInt( p0)+1,bE0);
+        /*idO1=idE;*/
 /*        idF1=idF;*/
 
 
@@ -187,27 +187,33 @@ bloque    ->  Bloque de la escalera, ya que un piso puede tener multiples escale
 function obtenerEscalera(piso,bloque)
 {
     var id=-1;
-    var url=url_base+"almacenes/getEscaleraByPisoBloque.xml";
+    var url=url_base+"almacenes/getescalerabypisobloque.xml";
     var datos={
         piso:piso,
         bloque:bloque
     }
-    var xml=ajax(url,datos,
-                 function()
+    ajax(url,datos,
+                 function(xml)
                  {
+                     console.log("no es nulo el xml");
+                     console.log("piso: "+piso);
+                     console.log("bloque: "+bloque);
                     if(xml!=null)
                     {
                         $("datos",xml).each(
                             function()
                             {
-                                var obj=$(this).find("Almacene");
-                                id=$("id",obj).text();
+                                console.log("encontre un datos");
+                                var obj=$(this).find("a");
+                                idO1=$("id",obj).text();
+                                console.log("el id es :"+idO1);
                             }
                         );
                     }else{
-                        id=6;
+                        id01-1;
                     }
+                     
                  });
     
-    return id;
+    
 }
