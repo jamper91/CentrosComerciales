@@ -3,7 +3,7 @@ $(document).ready(function()
 {
     $(function()
       {
-          getBanner(null,"../");
+          /*getBanner(null,"../");*/
           var parametros=getUrlVars();
           getInfoCentroComercial(parametros["idCentroComercial"]);
       }
@@ -12,22 +12,31 @@ $(document).ready(function()
 
 function getInfoCentroComercial(idCentroComercial)
 {
-    var url="";
+    var url=url_base+"centroscomerciales/getInformacionCentroComercial.xml";
     var datos={
         idCentroComercial:idCentroComercial
     };
-    var xml=ajax(url,datos);
-    if(xml!=null)
-    {
-        $("",xml).each(function()
-        {
-            var logo,ciudad,horario,descripcion;
-
-            $("#logo").attr("src",logo);
-            $("#ciudad").text(local);
-            $("#horario").text(horario);
-            $("#descripcion").text(descripcion);
-        });
-    }
+    ajax(url,datos,
+         function(xml)
+         {
+            if(xml!=null)
+            {
+                $("datos",xml).each(function()
+                {
+                    var obj=$(this).find("Centroscomerciale");
+                    var logo,ciudad,horario,descripcion;
+                    logo=$("logo",obj).text();
+                    descripcion=$("descripcion",obj).text();
+                    horario=$("horario",obj).text();
+                    obj=$(this).find("Ciudade");
+                    ciudad=$("nombre",obj).text();
+                    $("#logo").attr("src",logo);
+                    $("#ciudad").text(ciudad);
+                    $("#horario").text(horario);
+                    $("#descripcion").text(descripcion);
+                });
+            }
+         });
+    
     
 }

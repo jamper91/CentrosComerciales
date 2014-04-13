@@ -13,22 +13,27 @@ $(document).ready(
 
 function getPromociones(idPromocion)
 {
-    var url="";
+    var url=url_base+"promociones/getpromocion.xml";
     var datos={
         idPromocion:idPromocion
     };
-    var xml=ajax(url,datos);
-    if(xml!=null)
-    {
-        $("",xml).each(function()
-        {
-            var src;
-            $("#promocion").attr("src",src);
-        });
-    }else
-    {
-        var src;
-        $("#promocion").attr("src",src);
-    }
+    var xml=ajax(url,datos,function(xml)
+                 {
+                     if(xml!=null)
+                    {
+                        $("datos",xml).each(function()
+                        {
+                            var obj=$(this).find("Promocione");
+                            var src;
+                            src=$("banner",obj).text();
+                            $("#promocion").attr("src",src);
+                        });
+                    }else
+                    {
+                        var src;
+                        $("#promocion").attr("src",src);
+                    }
+                 });
+    
     
 }

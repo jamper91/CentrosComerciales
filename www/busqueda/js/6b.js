@@ -11,26 +11,33 @@ $(document).ready(
     }
 );
 
-function getImagenBanner(idCentroComercial)
+function getPromociones(idCentroComercial)
 {
-    var url="";
+    var url=url_base+"promociones/getpromociones.xml";
     var datos={
         idCentroComercial:idCentroComercial
     };
-    var xml=ajax(url,datos);
-    if(xml!=null)
-    {
-        $("",xml).each(function()
-        {
-            var src,id;
-            var html="<li><a href='$2'><img src='$1' /></a></li>";
-            html=html.replace("$1",src);
-            html=html.replace("$2","6a.html?idPromocion="+id);
-            $("#promociones").append(html);
-        });
-    }else
-    {
-        
-    }
+    ajax(url,datos,function(xml)
+                 {
+                     if(xml!=null)
+                    {
+                        $("datos",xml).each(function()
+                        {
+                            var obj=$(this).find("Promocione");
+                            
+                            var src,id;
+                            src=$("banner",obj).text();
+                            id=$("id",obj).text();
+                            var html="<li><a href='$2'><img src='$1' /></a></li>";
+                            html=html.replace("$1",src);
+                            html=html.replace("$2","6a.html?idPromocion="+id);
+                            $("#promociones").append(html);
+                        });
+                    }else
+                    {
+
+                    }
+                 });
+    
     
 }

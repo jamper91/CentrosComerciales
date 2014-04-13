@@ -14,26 +14,31 @@ $(document).ready(
 
 function getServicios(idCentroComercial)
 {
-    var url="";
+    var url=url_base+"servicios/getserviciosbycentrocomercial.xml";
     var datos={
         idCentroComercial:idCentroComercial
     };
-    var xml=ajax(url,datos);
-    if(xml!=null)
-    {
-        $("",xml).each(function()
-        {
-            var nombre;
-            var html="<li>$1</li>";
-            html=html.replace("$1",nombre);
-            $("#servicios").append(html);
-        });
-    }else
-    {
-        var nombre="Baños";
-        var html="<li>$1</li>";
-        html=html.replace("$1",nombre);
-        $("#servicios").append(html);
-    }
+    var xml=ajax(url,datos,function(xml)
+                 {
+                     if(xml!=null)
+                    {
+                        $("datos",xml).each(function()
+                        {
+                            var obj=$(this).find("s");
+                            var nombre;
+                            nombre=$("nombre",obj).text();
+                            var html="<li>$1</li>";
+                            html=html.replace("$1",nombre);
+                            $("#servicios").append(html);
+                        });
+                    }else
+                    {
+                        var nombre="Baños";
+                        var html="<li>$1</li>";
+                        html=html.replace("$1",nombre);
+                        $("#servicios").append(html);
+                    }
+                 });
+    
     
 }

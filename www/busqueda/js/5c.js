@@ -5,7 +5,7 @@ $(document).ready(
         /*Funciones autoejecutables*/
         (function()
          {
-             getBanner(null,"../");
+             //getBanner(null,"../");
              var parametros=getUrlVars();
              getInformacion(parametros["idMedioTransporte"],parametros["idCentroComercial"]);
          })();
@@ -16,39 +16,63 @@ function getInformacion(idMedioTransporte, idCentroComercial)
 {
     log("5c","getInformacion", "idMedioTransporte: "+idMedioTransporte);
     log("5c","getInformacion", "idCentroComercial: "+idCentroComercial);
-    var url="";
+    var url=url_base+"centroscomerciales_mediostransportes/getinformacionmediotransporte.xml";
     var datos={
         idMedioTransporte:idMedioTransporte,
         idCentroComercial:idCentroComercial
     };
-    var xml=ajax(url,datos);
-    if(xml!=null)
-    {
-        $("",xml).each(function()
-        {
-            var nombre,informacion;
-            $("#nombre").text(nombre);
-            $("#informacion").val(informacion);
-            
-        });
-    }else
-    {
+    ajax(url,datos,function(xml)
+         {
+            if(xml!=null)
+            {
+                log("el xml no es nulo");
+                $("datos",xml).each(function()
+                {
+                    if(idMedioTransporte!=1)
+                    {
+                        console.log("entre en el if");
+                        var obj=$(this).find("c_m");
+                        var nombre,informacion;
+                        
+                        informacion=$("descripcion",obj).text();
+                        obj=$(this).find("m");
+                        nombre=$("nombre",obj).text();
+                        $("#nombre").text(nombre);
+                        $("#informacion").val(informacion);
+                    }else{
+                        console.log("entre en el else");
+                        var obj=$(this).find("cc");
+                        var lat,lon;
+                        lat=$("lat",obj).text();
+                        lon=$("lon",obj).text();
+                        activarMapa(lat,lon);
+                    }
+                    
 
-            var nombre="Transporte Publico",informacion="Cojase un transmilleno y se baja donde vea que esta perdido";
-            $("#nombre").text(nombre);
-            $("#informacion").val(informacion);
-            activarMapa();
-         
-    }
+                });
+            }else
+            {
+
+                    var nombre="Transporte Publico",informacion="Cojase un transmilleno y se baja donde vea que esta perdido";
+                    $("#nombre").text(nombre);
+                    $("#informacion").val(informacion);
+                    activarMapa();
+
+            }
+         });
+    
     
 }
 
-function activarMapa()
+function activarMapa(lat,lon)
 {
-    /*$("#map_canvas").attr("display","block");*/
+    console.log("entre en el mapa");
+    console.log("lat: "+lat);
+    console.log("lon: "+lon);
+    $("#map_canvas").css("display","block");
     var mapCanvas = document.getElementById('map_canvas');
     var mapOptions = {
-      center: new google.maps.LatLng(4.6753515,-74.0479714),
+      center: new google.maps.LatLng(lat,lon),
       zoom: 18,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -56,7 +80,7 @@ function activarMapa()
     
     var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
     var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(4.6753515,-74.0479714),
+      position: new google.maps.LatLng(lat,lon),
       map: map,
       icon: iconBase + 'schools_maps.png'
     });
