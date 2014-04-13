@@ -4,7 +4,7 @@ $(document).ready(function()
      {
          getBanner(null,"../");
          getCategorias();
-     });
+     })();
     /*Esta funcion se encarga de caputara cuando el usario le da clic al boton buscar*/
     $("#btnBuscar").click(
         function(e)

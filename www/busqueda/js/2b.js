@@ -12,22 +12,28 @@ $(document).ready(function()
 
 function getCentrosComercialesByLocal(idLocal)
 {
-    var url="";
+    var url=url_base+"Almacenes/getcentroscomercialesbylocal.xml";
     var datos={
         idLocal:idLocal
     };
-    var xml=ajax(url,datos);
-    if(xml!=null)
-    {
-        $("",xml).each(function()
-        {
-            var nombreLocal,idLocal;
-
-            var html="<li><a href='3S.html?idLocal=$1'>$2</a></li>";
-            html=html.replace("$1",idLocal);
-            html=html.replace("$2",nombreLocal)
-            $("#locales").append(html);
-        });
-    }
+    ajax(url,datos,function(xml)
+         {
+            if(xml!=null)
+            {
+                $("datos",xml).each(function()
+                {
+                    var obj=$(this).find("cc");
+                    var nombreLocal,idLocal;
+                    
+                    nombreLocal=$("nombre",obj).text();
+                    idLocal=$("id",obj).text();
+                    var html="<li><a href='3S.html?idLocal=$1'>$2</a></li>";
+                    html=html.replace("$1",idLocal);
+                    html=html.replace("$2",nombreLocal)
+                    $("#locales").append(html);
+                });
+            }         
+         });
+    
     
 }

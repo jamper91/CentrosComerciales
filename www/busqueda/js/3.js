@@ -22,6 +22,7 @@ $(document).ready(function()
     $("#informacionCentroComercial").click(
         function(e)
         {
+            redirigir("5a.html?idCentroComercial="+$(this).attr("idCentro"));
         }
     );
     $("#masInformacion").click(
@@ -33,31 +34,45 @@ $(document).ready(function()
 
 function getInfoLocal(idLocal)
 {
-    var url="";
+    var url=url_base+"almacenes/getinformacionlocal.xml";
     var datos={
         idLocal:idLocal
     };
-    var xml=ajax(url,datos);
-    if(xml!=null)
-    {
-        $("",xml).each(function()
-        {
-            var logo,local,piso,seccion,horario,descripcion;
-
-            $("#logo").attr("src",logo);
-            $("#local").text(local);
-            $("#piso").text(piso);
-            $("#seccion").text(seccion);
-            $("#horario").text(horario);
-            $("#descripcion").text(descripcion);
-        });
-    }else{
-        $("#logo").attr("src",logo);
-        $("#local").text("Local: "+idLocal);
-        $("#piso").text("Piso: "+idLocal);
-        $("#seccion").text("Seccion: "+idLocal);
-        $("#horario").text("Horario: "+idLocal);
-        $("#descripcion").text("Descripcion: "+idLocal);
-    }
+    ajax(url,datos,function(xml)
+         {
+            if(xml!=null)
+            {
+                $("datos",xml).each(function()
+                {
+                    var obj=$(this).find("Almacene");
+                    var logo,local,piso,seccion,horario,descripcion;
+                    logo=$("logo",obj).text();
+                    local=$("nombre",obj).text();
+                    seccion=$("seccion",obj).text();
+                    horario=$("horario",obj).text();
+                    descripcion=$("descripcion",obj).text();
+                    
+                    
+                    $("#logo").attr("src",logo);
+                    $("#local").text(local);
+                    $("#piso").text(piso);
+                    $("#seccion").text(seccion);
+                    $("#horario").text(horario);
+                    $("#descripcion").text(descripcion);
+                    
+                    //Modifico informacion de los botones, pero no sera visible al usuario
+                    
+                    $("#informacionCentroComercial").attr("idCentro",$("centroscomerciale_id",obj).text());
+                });
+            }else{
+                $("#logo").attr("src",logo);
+                $("#local").text("Local: "+idLocal);
+                $("#piso").text("Piso: "+idLocal);
+                $("#seccion").text("Seccion: "+idLocal);
+                $("#horario").text("Horario: "+idLocal);
+                $("#descripcion").text("Descripcion: "+idLocal);
+            }
+         });
+    
     
 }

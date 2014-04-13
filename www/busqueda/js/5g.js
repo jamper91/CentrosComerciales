@@ -1,4 +1,4 @@
-/*Esta pagina se encarga de mostrar los servicios del centro comercial */
+/*Esta pagina se encarga de mostrar los loscales del centro comercial */
 $(document).ready(
     function()
     {

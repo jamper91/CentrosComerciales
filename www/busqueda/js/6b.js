@@ -1,4 +1,4 @@
-/*Esta pagina se encarga de mostrar el banner seleccionado */
+/*Esta pagina se encarga de mostrar las promociones */
 $(document).ready(
     function()
     {

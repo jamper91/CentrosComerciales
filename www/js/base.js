@@ -1,3 +1,6 @@
+/*var url_base="http://192.168.0.13/CentrosComercialesWeb/";*/
+var url_base="http://localhost/CentrosComercialesWeb/";
+
 function salir()
 {
     navigator.app.exitApp();
@@ -20,7 +23,7 @@ function ajax(url2, datos, callback)
     var retornar=null;
     $.ajax({
         url: url2,
-        type: "GET",
+        type: "POST",
         data: datos,
         headers: { 'Access-Control-Allow-Origin': '*' },
         crossDomain: true,
@@ -31,7 +34,6 @@ function ajax(url2, datos, callback)
         },
         success: function(data)
         {
-            log("base","ajax","success: entre "+xmlToString(data));
             retornar=data
         }
     }).done(function()

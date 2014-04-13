@@ -1,28 +1,8 @@
 //Esta pagina se encarga de obtener los ids de los locales para graficarlos en el mapa
-$(document).ready(function()
-{
-    $(function()
-      {
-          getBanner(null,"../");
-          var parametros=getUrlVars();
-          obtenerCoordenadas(parametros["idO"],parametros["idF"]);
-          /*obtenerCoordenadas(1,12);*/
-      }
-     );
-    $("#continuar").click(
-        function(e)
-        {
-            e.preventDefault();
-            obtenerCoordenadas(6,12);
-        }
-    );
 
-});
+var idO1,idF1;
 
-/*Esta funcion se encarga de obtener las coordenadas de los locales dados*/
-function  obtenerCoordenadas(idO, idF)
-{
-    /*Posiciones de los locales donde:
+/*Posiciones de los locales donde:
         x=      Posicion x
         y=      Posicion y
         idE=    Id de la escalera
@@ -34,106 +14,171 @@ function  obtenerCoordenadas(idO, idF)
     */
     var x0,y0,idE0,bE0,ex0,ey0,p0,urlM;
     var x1,y1,ex1,ey1,p1;
+$(document).ready(function()
+{
+    (function()
+      {
+          /*getBanner(null,"../");*/
+          var parametros=getUrlVars();
+          obtenerCoordenadas(parametros["idO"],parametros["idF"],function()
+                             {
+                                 obtemerCoordenadas2(parametros["idF"],function()
+                                                     {
+                                                         analisis();
+                                                     });
+                             });
+          /*obtenerCoordenadas(1,12);*/
+      }
+     )();
+    $("#continuar").click(
+        function(e)
+        {
+            e.preventDefault();
+            obtenerCoordenadas(idO1,idF1,function()
+                             {
+                                 obtemerCoordenadas2(idF1,function()
+                                                     {
+                                                         analisis();
+                                                     });
+                             });
+        }
+    );
+
+});
+
+/*Esta funcion se encarga de obtener las coordenadas de los locales dados*/
+function  obtenerCoordenadas(idO, idF, callback)
+{
+    alert("entre");
+    idF1=idF;
     
     /*Obtencion de datos*/
     
-    var url="";
+    var url=url_base+"almacenes/getinformacionlocal.xml";
     var datos={
         idLocal:idO
     }
-    /*var xml=ajax(url,datos);*/
-    var xml=null;
-    if(xml!=null)
-    {
-        $("",xml).each(
-            function()
+    ajax(url,datos,function(xml)
+         {
+            if(xml!=null)
             {
-                $("#mapa").attr("src",urlM);
+                console.log("Ente al primer ajax");
+                $("datos",xml).each(
+                    function()
+                    {
+                        var obj=$(this).find("Piso");
+                        urlM=$("mapa",obj).text();
+                        p0=$("numero",obj).text();
+                        $("#mapa").attr("src",urlM);
+                        obj=$(this).find("Almacene");
+                        x0=$("x",obj).text();
+                        y0=$("y",obj).text();
+                        idE0=$("escaleracercana",obj).text();
+                        bE0=$("bloque",obj).text();
+                        
+                        //Obtengo las coordenadas de la escalera
+                        url=url_base+"almacenes/getcoordenadasescalera.xml";
+                        datos={
+                            idEscalera: idE0
+                        }
+                        ajax(url,datos,
+                             function(xml2)
+                             {
+                                 console.log("Ente al segundo ajax");
+                                 $("datos",xml2).each(
+                                    function()
+                                    {
+                                        var obj2=$(this).find("Almacene");  
+                                        ex0=$("x",obj2).text();
+                                        ey0=$("y",obj2).text();
+                                        
+                                    });
+                                 
+                             });
+                        
+                    }
+                );
+                  callback();
+               
+                /*Fin Obtencion de datos*/
+            }else{
             }
-        );
-    }else{
-        if(idO==1)
-        {
-            x0="569px";
-            y0="651px";
-            idE0=5;
-            ex0="159px";
-            ey0="570px";
-            p0=1;
-        }else if(idO==6)
-        {
-            x0="159px";
-            y0="570px";
-            idE0=6;
-            ex1="159px";
-            ey1="570px";
-            p0=2;
-        }
-        
-        
-        
-    }
-    var datos={
-        idLocal:idF
-    }
-    /*var xml2=ajax(url,datos);*/
-    var xml2=null;
-    if(xml2!=null)
-    {
-        $("",xml2).each(
-            function()
-            {
-                
-            }
-        );
-    }else{
-        if(idF==12)
-        {
-            x1="732px";
-            y1="96px";
-            p1=2;
-        }
-    }
-    
-    /*Fin Obtencion de datos*/
-    
-    /*Analisis Ruta*/
-    
-        /*Si se encuentran en el mismo piso*/
-        if(p0==p1)
-        {
-            $("#origen").css("top",y0);
-            $("#origen").css("left",x0);
-            
-            $("#fin").css("top",y1);
-            $("#fin").css("left",x1);
-            /* Desabilito el boton continuar */
-            $("#continuar").css("display","none");
-        }else{
-            log("4b","obtenerCoordenadas","Entre al else");
-            /*Si no se encuentran en el mismo piso, muestro el mapa que va desde el origen hasta las escaleras*/
-            $("#origen").css("top",y0);
-            $("#origen").css("left",x0);
-            
-            $("#fin").css("top",ey0);
-            $("#fin").css("left",ex0);
-            
-            log("4b","obtenerCoordenadas","y0: "+y0);
-            log("4b","obtenerCoordenadas","x0: "+x0);
-            log("4b","obtenerCoordenadas","y1: "+ey0);
-            log("4b","obtenerCoordenadas","x1: "+ex0);
-            /* Habilito el boton continuar */
-            $("#continuar").css("display","block");
-            /*Obtengo el id de la escalera del siguiente piso*/
-            idE=obtenerEscalera(p0+1,bE0);
-            /*$("#continuar").click(obtenerCoordenadas(idE,idF));*/
-            
-            
-        }
-    
-    /*Fin Analisis Ruta*/
+         });
+  
+   
     
 }
+
+function obtemerCoordenadas2(idF,callback)
+{
+    var url=url_base+"almacenes/getinformacionlocal.xml";
+      var datos={
+        idLocal:idF
+    }
+    ajax(url,datos,
+         function(xml)
+         {
+                if(xml!=null)
+                {
+                    console.log("Ente al tercer ajax");
+                     $("datos",xml).each(
+                         function()
+                         {
+                            var obj=$(this).find("Almacene");
+                            x1=$("x",obj).text();
+                            y1=$("y",obj).text();
+                            obj=$(this).find("Piso");
+                            p1=$("numero",obj).text();
+
+                            
+
+                       
+                         });
+                 }
+             callback();
+         }); 
+    
+}
+
+function analisis()
+{
+     /*Analisis Ruta*/
+    console.log(p0+"=="+p1);
+    /*Si se encuentran en el mismo piso*/
+    if(p0==p1)
+    {
+        $("#origen").css("top",y0);
+        $("#origen").css("left",x0);
+
+        $("#fin").css("top",y1);
+        $("#fin").css("left",x1);
+        /* Desabilito el boton continuar */
+        $("#continuar").css("display","none");
+    }else{
+        log("4b","obtenerCoordenadas","Entre al else");
+        /*Si no se encuentran en el mismo piso, muestro el mapa que va desde el origen hasta las escaleras*/
+        $("#origen").css("top",y0);
+        $("#origen").css("left",x0);
+
+        $("#fin").css("top",ey0);
+        $("#fin").css("left",ex0);
+
+        log("4b","obtenerCoordenadas","y0: "+y0);
+        log("4b","obtenerCoordenadas","x0: "+x0);
+        log("4b","obtenerCoordenadas","y1: "+ey0);
+        log("4b","obtenerCoordenadas","x1: "+ex0);
+        /* Habilito el boton continuar */
+        $("#continuar").css("display","block");
+        /*Obtengo el id de la escalera del siguiente piso*/
+        idE=obtenerEscalera(p0+1,bE0);
+        idO1=idE;
+/*        idF1=idF;*/
+
+
+    }
+     /*Fin Analisis Ruta*/ 
+}
+
 /*
 Se encarga de obtener el id de la escalera de un piso en especifico
 piso      ->  Piso de la escalera
@@ -142,23 +187,27 @@ bloque    ->  Bloque de la escalera, ya que un piso puede tener multiples escale
 function obtenerEscalera(piso,bloque)
 {
     var id=-1;
-    var url="";
+    var url=url_base+"almacenes/getEscaleraByPisoBloque.xml";
     var datos={
         piso:piso,
         bloque:bloque
     }
-    /*var xml=ajax(url,datos);*/
-    var xml=null;
-    if(xml!=null)
-    {
-        $("",xml).each(
-            function()
-            {
-                
-            }
-        );
-    }else{
-        id=6;
-    }
+    var xml=ajax(url,datos,
+                 function()
+                 {
+                    if(xml!=null)
+                    {
+                        $("datos",xml).each(
+                            function()
+                            {
+                                var obj=$(this).find("Almacene");
+                                id=$("id",obj).text();
+                            }
+                        );
+                    }else{
+                        id=6;
+                    }
+                 });
+    
     return id;
 }

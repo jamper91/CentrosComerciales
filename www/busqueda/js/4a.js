@@ -6,12 +6,12 @@ var  origen=null,fin=null;
 
 $(document).ready(function()
 {
-    $(function()
+    (function()
       {
-          getBanner(null,"../");
+          /*getBanner(null,"../");*/
           autocompletar();
       }
-     );
+     )();
     $("#verMapa").click(
         function(e)
         {
@@ -23,22 +23,23 @@ $(document).ready(function()
 function autocompletar()
 {
     var locales=new Array();
-    locales.push({id:1, value:"MCDonals"});
-    locales.push({id:2, value:"El corral"});
-    locales.push({id:12, value:"El Exito"});
-    var url="";
+
+    var url= url_base+"almacenes/getlocales.xml";
     var datos={
         
     };
-    if(xml!==null)
-    {
-        var xml=ajax(url,datos);
-        $("",xml).each(function()
-        {
-            var idL,nombreL;
-            locales.push({id:idL,value:nombreL});
-        });
-    }
+    ajax(url,datos,function(xml)
+         {
+            $("datos",xml).each(function()
+            {
+                var obj=$(this).find("Almacene");
+                
+                var idL,nombreL;
+                idL=$("id",obj).text();
+                nombreL=$("nombre",obj).text();
+                locales.push({id:idL,value:nombreL});
+            });
+         });
     
     
     
