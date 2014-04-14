@@ -127,3 +127,47 @@ body{
 .menu .noticias{
     background-image: url(../images/megaphone.svg);
 }
+
+.a1{
+    width: 100%;
+}
+.header{
+    width: 100%;
+    display: block;
+    height: 80px;
+    line-height: 80px;
+}
+
+.header .opciones
+{
+    width: auto;
+    float: right;
+    height: 80px;
+    line-height: 80px;
+}
+.header .atras{
+
+    float: left;
+    width: auto;
+    height: 80px;
+    line-height: 80px;
+}
+.header .logo{
+    overflow: hidden;
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+}
+.a1 .titulo
+{
+    padding-left: 0px;
+    padding-right: 0px;
+    background: rgba(0, 160, 255, 0.28);
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-family: PT Sans Bold;
+    color: #ffffff;
+    font-size: 5vw;
+    text-transform: uppercase;
+}

@@ -4,6 +4,7 @@
 	<title>Centros Comerciales</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
 	<style type="text/css">
 		/* Prevent copy paste for all elements except text fields */
 		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
@@ -36,7 +37,7 @@
 </head>
 <body>
 	
-    
+<!--    
 Buscar por centro comercial    <br/>
 Ciudad: 
 <select id="ciudades">
@@ -57,6 +58,69 @@ Buscar por nombre:
 Nombre:    <input type="text" id="nombreLocal" />
     
     <br/>
-    <img id="banner" />
+    <img id="banner" />-->
+    
+
+<div class="a1">
+    <div class="header">
+        
+        <div class="atras">
+            <img src="../images/arrow-right.svg"> Atras
+        </div>
+        
+        <div class="opciones">
+            <a href="#" class="btnRecargar">
+        
+            </a>
+            <a href="#" class="btnOpciones">
+            </a>
+        </div>
+        <div class="logo">
+            <img src="../images/imagopeque.svg" style="height:50px">
+        </div>
+        
+    </div>
+    <div class="titulo">
+        Encuentra la tienda que buscas
+    </div>
+    
+    <div class="contenido">
+        Búsqueda por centro comercial
+        <ul class="menu">
+            <li class="ciudad">
+                <a href="busqueda/1a.html">Ciudad</a>
+                <a class="go"></a>
+            </li>
+            <li class="centrocomercial" >
+                <a href="busqueda/1b.html">Centro Comercial</a> 
+                <a class="go"></a>
+            </li>
+            <li class="categoria">
+                <a href="busqueda/6b.html">Categoría</a> 
+                <a class="go"></a>
+            </li>
+        </ul>
+        
+            <input class="btnBuscar" type="button" value="BUSCAR" />
+            
+        <div id="buscar">
+            <labe>Busque por nombre</labe>
+            <input type="text" class="txtBuscar" />
+        </div>
+        
+        
+    </div>
+    
+    <!--Carrousel-->
+    
+
+    <div id="owl-demo" class="owl-carousel owl-theme">
+        <div class="item"><img src="../images/01.jpg" style="width:100%"></div>
+        <!--<div class="item"><img src="../images/02.jpg" style="width:100%" ></div>
+        <div class="item"><img src="../images/03.jpg" style="width:100%"></div>
+        <div class="item"><img src="../images/04.jpg" style="width:100%"></div>-->
+    </div>
+    </div>    
+    
 </body>
 </html>
