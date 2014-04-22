@@ -22,6 +22,14 @@ $(document).ready(function()
              $("#lnkCiudad").text(nombreCiudad);
              //Modifico y habilito el link para buscar centros comerciales
              $("#lnkCentroComercial").attr("href","centroscomerciales.html?url=1a.html&idCiudad="+idCiudad+"&nombreCiudad="+nombreCiudad);
+         }else if(getIdCiudad())
+         {
+             idCiudad=getIdCiudad();
+             nombreCiudad=getNombreCiudad();
+             //Modifico el texto que dice le nombre de la ciudad
+             $("#lnkCiudad").text(nombreCiudad);
+             //Modifico y habilito el link para buscar centros comerciales
+             $("#lnkCentroComercial").attr("href","centroscomerciales.html?url=1a.html&idCiudad="+idCiudad+"&nombreCiudad="+nombreCiudad);
          }
          if(parametros["idCentroComercial"])
          {

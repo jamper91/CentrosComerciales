@@ -11,7 +11,10 @@ $(document).ready(function()
         {
             e.preventDefault();
             var idCiudad=$("#ciudades").val();
-            redirigir("2c.html?idCiudad="+idCiudad);
+            var nombreCiudad=$("#ciudades option:selected").text();
+            setIdCiudad(idCiudad);
+            setNombreCiudad(nombreCiudad);
+            redirigir("../index.html");
         }
     );
 });
@@ -29,7 +32,7 @@ function getCiudades()
             if(xml!=null)
             {
                 $("#ciudades").append("<option value='0'>Selecciones ..</option>");
-                $("ciudades",xml).each(function()
+                $("datos",xml).each(function()
                 {
                     var obj=$(this).find("Ciudade");
                     var valor,texto;
@@ -38,6 +41,13 @@ function getCiudades()
                     var html="<option value='"+valor+"'>"+texto+"</option>";
                     $("#ciudades").append(html);
                 });
+                //Ahora determino si ya existe una ciudad en sesion
+                var idCiudad=getIdCiudad();
+                if(idCiudad)
+                {
+                    console.log("Existe idCiudad en sesion");
+                    $("#ciudades").val(idCiudad);
+                }
             }         
          });
     

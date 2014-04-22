@@ -18,7 +18,6 @@
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
     <!--Fin Jquery UI-->
     <script type="text/javascript" src="../js/base.js"></script>
-    <script type="text/javascript" src="js/7d.js"></script>
 	<script type="text/javascript">
 		/* This code is used to run as soon as Intel activates */
 		var onDeviceReady=function(){
@@ -31,15 +30,15 @@
 
 </head>
 <body>
-    Configuracion:<br/>
-    Ciudad:
-    <select id="ciudades">
+    ¿Como podemos mejorar esta app?<br>
     
-    </select>
+    Escríbenos y danos tu opinión (max 200 caracteres)<br>
     
-    <input type="button" value="Guardar" id="btnGuardar"/>
+    <form action="MAILTO:jamper91@hotmail.com" method="post" enctype="text/plain">
+    <textarea name="comentario" id="comentario">
     
-    <br/>
-    <img id="banner" />
+    </textarea>
+    <input type="submit" value="Send">
+    </form>
 </body>
 </html>

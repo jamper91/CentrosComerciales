@@ -134,4 +134,16 @@ function getIdCiudad()
 {
     return obtenerVariable("idCiudad");
 }
+function setIdCiudad(idCiudad)
+{
+    crearVariableSesion("idCiudad",idCiudad);
+}
+function getNombreCiudad()
+{
+    return obtenerVariable("nombreCiudad");
+}
+function setNombreCiudad(nombreCiudad)
+{
+    crearVariableSesion("nombreCiudad",nombreCiudad);
+}
 /* ##################################### FIN VARIABLES DE SESION ##################################### */
