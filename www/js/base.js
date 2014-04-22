@@ -1,5 +1,5 @@
 /*var url_base="http://192.168.0.13/CentrosComercialesWeb/";*/
-var url_base="http://localhost/CentrosComercialesWeb/";
+var url_base="http://192.168.0.11/CentrosComercialesWeb/";
 
 function salir()
 {
@@ -116,3 +116,22 @@ function xmlToString(xmlData) {
     }
     return xmlString;
 }  
+
+/* ##################################### VARIABLES DE SESION ##################################### */
+function crearVariableSesion(nombre, valor)
+{
+    localStorage.setItem(nombre, valor);
+}
+function obtenerVariable(nombre)
+{
+    var valor = localStorage.getItem(nombre);
+    if(valor)
+        return valor;
+    else
+        return null;
+}
+function getIdCiudad()
+{
+    return obtenerVariable("idCiudad");
+}
+/* ##################################### FIN VARIABLES DE SESION ##################################### */

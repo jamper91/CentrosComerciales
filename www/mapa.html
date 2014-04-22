@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="theme/default/style.css" type="text/css">
+        <!--<script src="js/firebug.js"></script>-->
+        <script src="js/OpenLayers.js"></script>
+        <script type="text/javascript">
+         //Variables a utilizar
+         var mapa,capa;
+         function iniciar()
+         {
+         //Creando el mapa
+         mapa=new OpenLayers.Map("mapa");
+         //Creando la capa
+         capa=new OpenLayers.Layer.OSM("OSM Map");
+         //Agregando la capa
+         mapa.addLayer(capa);
+         //Establenciendo donde visualizara el mapa, para esto debemos pasarle las coordenadas
+         //de latitud y longitud, ademas del zoom, que indica que en este caso es 12
+         mapa.setCenter(
+         new OpenLayers.LonLat(-74.061674, 4.661464).transform(
+         new OpenLayers.Projection("EPSG:4326"),
+         mapa.getProjectionObject()
+         ), 12
+         );
+         }
+         </script>
+        <script>
+            function ini()
+            {
+                 var map = new OpenLayers.Map('mapa');
+
+                    var graphic = new OpenLayers.Layer.Image(
+                        'City Lights',
+                        'http://i1011.photobucket.com/albums/af231/ediciondefotos001/plano1xy2.jpg',
+                        new OpenLayers.Bounds(-180, -88.759, 180, 88.759),
+                        new OpenLayers.Size(580, 288),
+                        {numZoomLevels: 3}
+                    );
+
+                    graphic.events.on({
+                        loadstart: function() {
+                            OpenLayers.Console.log("loadstart");
+                        },
+                        loadend: function() {
+                            OpenLayers.Console.log("loadend");
+                        }
+                    });
+
+                    var jpl_wms = new OpenLayers.Layer.WMS(
+                        "Global Imagery",
+                        "http://demo.opengeo.org/geoserver/wms",
+                        {layers: "bluemarble"},
+                        {maxExtent: [-160, -88.759, 160, 88.759], numZoomLevels: 3}
+                    );
+
+                    map.addLayers([graphic, jpl_wms]);
+                    map.addControl(new OpenLayers.Control.LayerSwitcher());
+                    map.zoomToMaxExtent();
+                
+            }
+        </script>
+        <style type="text/css">
+                .smallmap {
+                    width: 100%;
+                    height: 300px;
+                }
+        </style>
+    </head>
+    <body onload="ini()">
+        <h3>Nuestro primer mapa con OpenLayers</h3>
+    <div id="mapa" class="smallmap">
+ 
+    </div>
+    </body>
+</html>

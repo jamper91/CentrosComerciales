@@ -1,0 +1,314 @@
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src='intelxdk.js'></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="js/base.js"></script>
+        <script type="text/javascript">
+            /* This code is used to run as soon as Intel activates */
+            var onDeviceReady=function(){
+            //hide splash screen
+            intel.xdk.device.hideSplashScreen();
+            };
+            document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+        </script>
+        <script type="text/javascript" src="http://www.openlayers.org/api/OpenLayers.js">
+        <!--<script src="js/firebug.js"></script>-->
+        <script src="js/OpenLayers.js"></script>
+        <script type="text/javascript">
+         //Variables a utilizar
+         var mapa,capa,controls,markers;
+        var idO1,idF1;
+
+        /*Posiciones de los locales donde:
+        x=      Posicion x
+        y=      Posicion y
+        idE=    Id de la escalera
+        bE=     Variable que representa el bloque al que pertenece la escalera
+        ex=     Posicion escalera x
+        ey=     Posicion escalera y
+        p=      Piso del local
+        urlM=   Url de la imagen del mapa
+    */
+    var x0,y0,idE0,bE0,ex0,ey0,p0,urlM;
+    var x1,y1,ex1,ey1,p1;
+            function ini()
+            {
+                
+                var idO,idF;
+                var parametros=getUrlVars();
+                idO=parametros["idO"];
+                idF=parametros["idF"];
+                obtenerCoordenadas(idO,idF,
+                function()
+                {
+                    
+                    $("#mensaje").text("Mapa...");
+                    mapa = new OpenLayers.Map('mapa');
+                    graphic = new OpenLayers.Layer.Image(
+                        'City Lights',
+                        urlM,
+                        new OpenLayers.Bounds(-180, -88.759, 180, 88.759),
+                        new OpenLayers.Size(580, 288),
+                        {numZoomLevels: 3}
+                    );
+
+                    graphic.events.on({
+                        loadstart: function() {
+                            OpenLayers.Console.log("loadstart");
+                        },
+                        loadend: function() {
+                            OpenLayers.Console.log("loadend");
+                        }
+                    });
+
+                    var jpl_wms = new OpenLayers.Layer.WMS(
+                        "Global Imagery",
+                        "http://demo.opengeo.org/geoserver/wms",
+                        {layers: "bluemarble"},
+                        {maxExtent: [-160, -88.759, 160, 88.759], numZoomLevels: 3}
+                    );
+
+                    mapa.addLayers([graphic, jpl_wms]);
+                    mapa.addControl(new OpenLayers.Control.LayerSwitcher());
+                    mapa.zoomToMaxExtent();
+                    markers= new OpenLayers.Layer.Markers( "Marcadores" );
+                    mapa.addLayer(markers);
+                    //mapa.addControl(new OpenLayers.Control.LayerSwitcher());
+                    $("#mensaje").text("Finalizo");
+                    obtemerCoordenadas2(parametros["idF"],function()
+                                                     {
+                                                         analisis();
+                                                     });
+                });
+                
+                                
+                    
+            }
+            /*Esta funcion se encarga de obtener las coordenadas de los locales dados*/
+            function  obtenerCoordenadas(idO, idF, callback)
+            {
+                alert("entre");
+                idF1=idF;
+                console.log(idO);
+                console.log(idF);
+                /*Obtencion de datos*/
+
+                var url=url_base+"almacenes/getinformacionlocal.xml";
+                var datos={
+                    idLocal:idO
+                }
+                ajax(url,datos,function(xml)
+                     {
+                        if(xml!=null)
+                        {
+                            console.log("Ente al primer ajax");
+                            $("datos",xml).each(
+                                function()
+                                {
+                                    console.log("entre en datos");
+                                    var obj=$(this).find("Piso");
+                                    urlM=$("mapa",obj).text();
+                                    p0=$("numero",obj).text();
+                                    /*$("#mapa").attr("src",urlM);
+                                    ini(urlM);*/
+                                    //ini(" http://i1011.photobucket.com/albums/af231/ediciondefotos001/plano1xy2.jpg");
+                                    //agregarMarcador(1,1,"nada",null,null);
+                                    obj=$(this).find("Almacene");
+                                    x0=$("x",obj).text();
+                                    y0=$("y",obj).text();
+                                    idE0=$("escaleracercana",obj).text();
+                                    bE0=$("bloque",obj).text();
+
+                                    //Obtengo las coordenadas de la escalera
+                                    url=url_base+"almacenes/getcoordenadasescalera.xml";
+                                    datos={
+                                        idEscalera: idE0
+                                    }
+                                    ajax(url,datos,
+                                         function(xml2)
+                                         {
+                                             console.log("Ente al segundo ajax");
+                                             $("datos",xml2).each(
+                                                function()
+                                                {
+                                                    var obj2=$(this).find("Almacene");  
+                                                    ex0=$("x",obj2).text();
+                                                    ey0=$("y",obj2).text();
+
+                                                });
+
+                                         });
+
+                                }
+                            );
+                              callback();
+
+                            /*Fin Obtencion de datos*/
+                        }else{
+                        }
+                     });
+
+
+
+            }
+            
+            function obtemerCoordenadas2(idF,callback)
+            {
+                var url=url_base+"almacenes/getinformacionlocal.xml";
+                  var datos={
+                    idLocal:idF
+                }
+                ajax(url,datos,
+                     function(xml)
+                     {
+                            if(xml!=null)
+                            {
+                                console.log("Ente al tercer ajax");
+                                 $("datos",xml).each(
+                                     function()
+                                     {
+                                        var obj=$(this).find("Almacene");
+                                        x1=$("x",obj).text();
+                                        y1=$("y",obj).text();
+                                        obj=$(this).find("Piso");
+                                        p1=$("numero",obj).text();
+
+
+
+
+                                     });
+                             }
+                         callback();
+                     }); 
+
+            }
+            function analisis()
+            {
+                $("#mensaje").text("Entre analisis");
+                 /*Analisis Ruta*/
+                console.log(p0+"==="+p1);
+                /*Si se encuentran en el mismo piso*/
+                if(p0==p1)
+                {
+                    agregarMarcador(x0,y0,"nada",null,null);
+                    //$("#origen").css("top",y0);
+                    //$("#origen").css("left",x0);
+                    agregarMarcador(x1,y1,"nada",null,null);
+                    //$("#fin").css("top",y1);
+                    //$("#fin").css("left",x1);
+                    /* Desabilito el boton continuar */
+                    $("#continuar").css("display","none");
+                }else{
+                    log("4b","obtenerCoordenadas","Entre al else");
+                    /*Si no se encuentran en el mismo piso, muestro el mapa que va desde el origen hasta las escaleras*/
+                    agregarMarcador(x0,y0,"nada",null,null);
+                    //$("#origen").css("top",y0);
+                    //$("#origen").css("left",x0);
+                    agregarMarcador(ex0,ey0,"nada",null,null);
+                    //$("#fin").css("top",ey0);
+                    //$("#fin").css("left",ex0);
+
+                    log("4b","obtenerCoordenadas","y0: "+y0);
+                    log("4b","obtenerCoordenadas","x0: "+x0);
+                    log("4b","obtenerCoordenadas","y1: "+ey0);
+                    log("4b","obtenerCoordenadas","x1: "+ex0);
+                    /* Habilito el boton continuar */
+                    $("#continuar").css("display","block");
+                    /*Obtengo el id de la escalera del siguiente piso*/
+                    obtenerEscalera(parseInt(p0)+1,bE0);
+                    /*idO1=idE;*/
+            /*        idF1=idF;*/
+
+
+                }
+                agregarMarcador(10,10,"10",null,null);
+                 /*Fin Analisis Ruta*/ 
+            }
+            function agregarMarcador(longitud,latitud,mensajeHtml,closeBox,overflow)
+            {
+                //Variable para determinar el tamaño de los popup
+                var AutoSizeAnchoredMinSize = OpenLayers.Class(OpenLayers.Popup.Anchored, {
+                        'autoSize': true, 
+                        'minSize': new OpenLayers.Size(400,400)
+                    });
+                var ll = new OpenLayers.LonLat(longitud,latitud);
+                var popupClass = AutoSizeAnchoredMinSize;
+                var popupContentHTML = mensajeHtml;
+
+                var feature = new OpenLayers.Feature(markers, ll);
+                feature.closeBox = closeBox;
+                feature.popupClass = popupClass;
+                feature.data.popupContentHTML = popupContentHTML;
+
+                feature.data.overflow = (overflow) ? "auto" : "hidden";
+
+                var marker = feature.createMarker();
+
+                var markerClick = function (evt) {
+                if (this.popup == null)
+                {
+                    this.popup = this.createPopup(this.closeBox);
+                    mapa.addPopup(this.popup);
+                    this.popup.show();
+                } else {
+                    this.popup.toggle();
+                }
+                    currentPopup = this.popup;
+                    OpenLayers.Event.stop(evt);
+                };
+                marker.events.register("mousedown", feature, markerClick);
+                markers.addMarker(marker);
+            }
+            function obtenerEscalera(piso,bloque)
+            {
+                var id=-1;
+                var url=url_base+"almacenes/getescalerabypisobloque.xml";
+                var datos={
+                    piso:piso,
+                    bloque:bloque
+                }
+                ajax(url,datos,
+                             function(xml)
+                             {
+                                 console.log("no es nulo el xml");
+                                 console.log("piso: "+piso);
+                                 console.log("bloque: "+bloque);
+                                if(xml!=null)
+                                {
+                                    $("datos",xml).each(
+                                        function()
+                                        {
+                                            console.log("encontre un datos");
+                                            var obj=$(this).find("a");
+                                            idO1=$("id",obj).text();
+                                            console.log("el id es :"+idO1);
+                                        }
+                                    );
+                                }else{
+                                    id01-1;
+                                }
+
+                             });
+
+
+            }
+        </script>
+        <style type="text/css">
+                .smallmap {
+                    width: 100%;
+                    height: 300px;
+                }
+        </style>
+    </head>
+    <body onload="ini()">
+        <h3>Nuestro primer mapa con OpenLayers</h3>
+    <div id="mapa" class="smallmap">
+ 
+    </div>
+        <label id="mensaje"></label>
+    </body>
+</html>

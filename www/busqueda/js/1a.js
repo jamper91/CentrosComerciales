@@ -1,13 +1,51 @@
-
-
+//Esta pagina permite buscar almacenes dentro  de un centro comercial, tanto por el nombre, o por la categoria
+var parametros=getUrlVars();
+var idCiudad,nombreCiudad;
+var idCentro,nombreCentro;
+var idCategoria,nombreCategoria;
 $(document).ready(function()
 {
     /*Funciones autoejecutables*/
     (function()
      {
          //getBanner(null,"../");
-         getCiudades();
-         autocompletar();
+         
+         //Determino si llego el id de la ciudad
+         if(parametros["idCiudad"])
+         {
+            
+             idCiudad=parametros["idCiudad"];
+             nombreCiudad=parametros["nombreCiudad"];
+             var regex = new RegExp('%20', 'g');
+             nombreCiudad = nombreCiudad.replace(regex, ' ');
+             //Modifico el texto que dice le nombre de la ciudad
+             $("#lnkCiudad").text(nombreCiudad);
+             //Modifico y habilito el link para buscar centros comerciales
+             $("#lnkCentroComercial").attr("href","centroscomerciales.html?url=1a.html&idCiudad="+idCiudad+"&nombreCiudad="+nombreCiudad);
+         }
+         if(parametros["idCentroComercial"])
+         {
+             
+             idCentro=parametros["idCentroComercial"];
+             nombreCentro=parametros["nombreCentroComercial"];
+             var regex = new RegExp('%20', 'g');
+             nombreCentro = nombreCentro.replace(regex, ' ');
+             //Modifico el texto que dice le nombre del centro comercial
+             $("#lnkCentroComercial").text(nombreCentro);
+             //Modifico y habilito el link para buscar categorias
+             $("#lnkCategorias").attr("href","categorias.html?url=1a.html&idCiudad="+idCiudad+"&nombreCiudad="+nombreCiudad+"&idCentroComercial="+idCentro+"&nombreCentroComercial="+nombreCentro);
+         }
+         if(parametros["idCategoria"])
+         {
+             
+             idCategoria=parametros["idCategoria"];
+             nombreCategoria=parametros["nombreCategoria"];
+             var regex = new RegExp('%20', 'g');
+             nombreCategoria = nombreCategoria.replace(regex, ' ');
+             //Modifico el texto que dice le nombre del centro comercial
+             $("#lnkCategoria").text(nombreCategoria);
+             
+         }
      })();
     
     /*Function que se activa al cambiar un elemento del select ciudades*/
@@ -60,6 +98,7 @@ function getCiudades()
         }else{
             log("1a","getCiudades","el xml es nulo");
         }
+         //Determino si llego alguna ciudad por la 
      });
     
     

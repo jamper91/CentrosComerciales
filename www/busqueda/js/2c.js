@@ -15,11 +15,11 @@ $(document).ready(
 
 function getCentrosComerciales(idCiudad)
 {
-    var url=url_base+"centroscomerciales/getcentroscomercialescyciudad.xml";
+    var url=url_base+"centroscomerciales/getcentroscomercialesbyciudad.xml";
     var datos={
         idCiudad:idCiudad
     };
-    ajax(url,datos,function()
+    ajax(url,datos,function(xml)
          {
             if(xml!=null)
             {
