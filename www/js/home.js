@@ -5,11 +5,6 @@ $(document).ready(function()
      {
          
      })();
-    $("#owl-demo").owlCarousel(
-    {
-        navigation : false, // Show next and prev buttons
-        singleItem:true
-    });
 });
 /*Esta funcion se encarga de obtener las imagenes del banner inferior*/
 function banner()

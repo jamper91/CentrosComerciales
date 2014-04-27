@@ -30,7 +30,8 @@ function getInfoCentroComercial(idCentroComercial)
                     horario=$("horario",obj).text();
                     obj=$(this).find("Ciudade");
                     ciudad=$("nombre",obj).text();
-                    $("#logo").attr("src",logo);
+                    ciudad=cambiarAcentos2(ciudad);
+                    $("#logo").attr("src","../images/logos/"+logo);
                     $("#ciudad").text(ciudad);
                     $("#horario").text(horario);
                     $("#descripcion").text(descripcion);

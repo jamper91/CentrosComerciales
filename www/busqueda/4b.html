@@ -22,7 +22,7 @@
     <script type="text/javascript" src="js/4b.js"></script>
     
     <!-- Open Layers -->
-    <!--<script type="text/javascript" src="../js/OpenLayers.js"></script>-->
+    <script src="http://openlayers.org/api/OpenLayers.js"></script>
     <!-- Fin Open Layers -->
     <!--IPicture-->
     <link rel="stylesheet" type="text/css" media="screen" href="../css/iPicture.css"/>
@@ -37,31 +37,21 @@
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 	</script>
-
+    <style type="text/css">
+                .smallmap {
+                    width: 100%;
+                    height: 300px;
+                }
+        </style>
 
 </head>
-<body onload="init()">
+<body>
    
     <br>
     
-    <div id="iPicture" data-interaction="click">
-	  <div class="ip_slide">
-	    <img id="mapa" class="ip_tooltipImg" src="../images/centro.jpg">
-	    <div id="origen" class="ip_tooltip ip_img32" style="top: 122px; left: 115px;" data-button="moreblack" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
-	      <p>
-	      </p>
-	    </div>
-	    <div id="fin" class="ip_tooltip ip_img32" style="top: 331px; left: 852px;" data-button="beadlightgreen" data-tooltipbg="bgblack" data-round="roundBgW" data-animationtype="ltr-slide">
-	      <p>
-	      </p>
-	    </div>
-	  </div>
-	</div>
-    
-    
-	<script>
-          $( "#iPicture" ).iPicture();
-    </script>
+    <div id="mapa" class="smallmap">
+ 
+    </div>
      <input type="button" id="continuar" value="Continuar" />
     <img id="banner" />
 </body>

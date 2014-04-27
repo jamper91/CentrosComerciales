@@ -12,6 +12,7 @@ $(document).ready(function()
 
 function getCentrosComercialesByLocal(idLocal)
 {
+    var estaVacio=true;
     var url=url_base+"Almacenes/getcentroscomercialesbylocal.xml";
     var datos={
         idLocal:idLocal
@@ -24,15 +25,21 @@ function getCentrosComercialesByLocal(idLocal)
                 {
                     var obj=$(this).find("cc");
                     var nombreLocal,idLocal;
-                    
                     nombreLocal=$("nombre",obj).text();
                     idLocal=$("id",obj).text();
-                    var html="<li><a href='3S.html?idLocal=$1'>$2</a></li>";
-                    html=html.replace("$1",idLocal);
-                    html=html.replace("$2",nombreLocal)
-                    $("#locales").append(html);
+                    if(idLocal)
+                    {
+                        estaVacio=false;
+                        var html="<li><a href='3.html?idLocal=$1'>$2</a></li>";
+                        html=html.replace("$1",idLocal);
+                        html=html.replace("$2",nombreLocal)
+                        $("#locales").append(html);
+                    }
+                    
                 });
-            }         
+            }
+            if(estaVacio)
+                 $("#locales").append("Lo sentimos, no encontramos informacion");
          });
     
     

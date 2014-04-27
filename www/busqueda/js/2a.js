@@ -12,7 +12,7 @@ $(document).ready(function(e)
 
 function getLocales(idCiudad,idCentroComercial,idCategoria)
 {
-
+    var estaVacio=true;
     var url=url_base+"almacenes/getlocalesbybusqueda.xml";
     var datos={
         idCiudad:idCiudad,
@@ -28,14 +28,20 @@ function getLocales(idCiudad,idCentroComercial,idCategoria)
                     var obj=$(this).find("l");
                     var nombreLocal,idLocal;
                     nombreLocal=$("nombre",obj).text();
+                    nombreLocal=cambiarAcentos2(nombreLocal);
                     idLocal=$("id",obj).text();
-                    var html="<li><a href='3.html?idLocal=$1'>$2</a></li>";
-                    html=html.replace("$1",idLocal);
-                    html=html.replace("$2",nombreLocal)
-                    $("#locales").append(html);
+                    if(idLocal)
+                    {
+                        estaVacio=false;
+                        var html="<li><a href='3.html?idLocal=$1'>$2</a></li>";
+                        html=html.replace("$1",idLocal);
+                        html=html.replace("$2",nombreLocal)
+                        $("#locales").append(html);
+                    }
+                    
                 });
             }
+             if(estaVacio)
+                 $("#locales").append("Lo sentimos, no encontramos informacion");
          });
-    
-    
 }

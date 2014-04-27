@@ -1,0 +1,173 @@
+@charset "utf-8";
+/* CSS Document */
+
+a{
+	text-decoration:none;
+}
+
+/*----------------------INICIO CÓDIGO-------------------*/
+
+body{
+	background-image:url(../images/background.jpg);
+	background-repeat:no-repeat;
+	width:640px;
+	height:1136px;
+}
+
+header{
+	width:639px;
+	height:283px;
+}
+
+#botonesArriba{
+	width:627px;
+	height:84px;
+	margin-top:69px;
+	margin-left:0px;	
+}
+
+#btAtras{
+	float:left;
+	width:108px;
+	height:27px;
+	margin-top:27px;
+	margin-left:18px;
+	background-image:url(../images/btAtrasFondo.svg);
+	background-repeat:no-repeat;
+}
+
+#btAtras p{
+	font-family:'Allerta', sans-serif;
+	color:#FFF;
+	text-align:center;
+	font-size:24px;
+	margin-top:0px;
+}
+
+#btAtras a{
+	color:#FFF;
+	padding-left:9px;
+}
+
+#btAtras:hover{
+	background-image:url(../images/btAtrasFondoOver.svg);
+	background-repeat:no-repeat;
+}
+
+a#Logopeque{
+	float:left;
+	width:173px;
+	height:80px;
+	margin-top:-12px;
+	margin-left:109px;
+}
+
+a#btconfig{
+	float:left;
+	width:32px;
+	height:32px;
+	margin-top:22px;
+	margin-left:127px;
+	background: url(../images/btconfig.svg);
+}
+a#btconfig:link { background-position: left; }
+a#btconfig:hover { background-position: right!important; }
+
+a#btrefresh{
+	float:left;
+	width:37.91px;
+	height:33.07px;
+	margin-top:22px;
+	margin-left:22px;
+	background: url(../images/btrefresh.svg);
+}
+a#btrefresh:link { background-position: left; }
+a#btrefresh:hover { background-position: right!important; }
+
+#franjaAzul{
+	width:639px;
+	height:62px;
+	margin-top:0px;
+	margin-left:0px;
+	background-image:url(../images/FondoFranjaAzul.svg);
+	background-repeat:no-repeat;
+}
+#franjaAzul p{
+	text-align:center;
+	font-family:'Allerta', sans-serif;
+	font-size:24px;
+	font-weight:700;
+	color:#FFF;
+	padding-top:13px;
+}
+
+#texto{
+	width:474px;
+	height:25px;
+	margin-top:40px;
+	margin-left:84px;
+	font-family:'Allerta', sans-serif;
+	font-size:26px;
+	color:#6d6c6c;
+	text-align:center;
+}
+
+
+section{
+	width:625px;
+	height:512px;
+	margin-top:27px;
+	margin-left:0px;
+}
+
+[contenteditable]{
+	float:left;
+	width:589px;
+	height:81px;
+	margin-top:0px;
+	margin-left:36px;
+	background-image:url(../images/FondoBuscador.svg);
+	background-repeat:no-repeat;
+	font-family:'Allerta', sans-serif;
+	text-align:center;
+	font-size:24px;
+	text-align:center;
+	color:#999;
+	border:hidden;	
+}
+
+[contenteditable] p{
+	color:#CCC;
+	}
+
+#buscar{
+	float:left;
+	width:329px;
+	height:60px;
+	margin-top:36px;
+	margin-left:147px;
+	background-image: url(../images/btBuscar.svg);
+	background-repeat:no-repeat;
+}
+
+#buscar a{
+	float:left;
+	width:329px;
+	height:60px;
+	margin-top:10px;
+	margin-left:3px;
+	font-family:'Allerta', sans-serif;
+	text-align:center;
+	font-size:24px;
+	color:#FFF;
+}
+
+
+
+footer{
+	width:559px;
+	height:306px;
+	margin-top:-30px;
+	margin-left:52px;
+}
+

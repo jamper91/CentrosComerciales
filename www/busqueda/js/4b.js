@@ -1,5 +1,5 @@
 //Esta pagina se encarga de obtener los ids de los locales para graficarlos en el mapa
-
+var map,markers;
 var idO1,idF1;
 
 /*Posiciones de los locales donde:
@@ -22,12 +22,13 @@ $(document).ready(function()
           var parametros=getUrlVars();
           obtenerCoordenadas(parametros["idO"],parametros["idF"],function()
                              {
+                                 console.log("CAsi entro");
+                                 ini(urlM);
                                  obtemerCoordenadas2(parametros["idF"],function()
                                                      {
                                                          analisis();
                                                      });
                              });
-          /*obtenerCoordenadas(1,12);*/
       }
      )();
     $("#continuar").click(
@@ -69,7 +70,7 @@ function  obtenerCoordenadas(idO, idF, callback)
                         var obj=$(this).find("Piso");
                         urlM=$("mapa",obj).text();
                         p0=$("numero",obj).text();
-                        $("#mapa").attr("src",urlM);
+                        
                         obj=$(this).find("Almacene");
                         x0=$("x",obj).text();
                         y0=$("y",obj).text();
@@ -147,22 +148,23 @@ function analisis()
     /*Si se encuentran en el mismo piso*/
     if(p0==p1)
     {
-        $("#origen").css("top",y0);
-        $("#origen").css("left",x0);
-
-        $("#fin").css("top",y1);
-        $("#fin").css("left",x1);
+        agregarMarcador(x0,y0,"10",null,null);
+        //$("#origen").css("top",y0);
+        //$("#origen").css("left",x0);
+        agregarMarcador(x1,y1,"10",null,null);
+        //$("#fin").css("top",y1);
+        //$("#fin").css("left",x1);
         /* Desabilito el boton continuar */
         $("#continuar").css("display","none");
     }else{
         log("4b","obtenerCoordenadas","Entre al else");
         /*Si no se encuentran en el mismo piso, muestro el mapa que va desde el origen hasta las escaleras*/
-        $("#origen").css("top",y0);
-        $("#origen").css("left",x0);
-
-        $("#fin").css("top",ey0);
-        $("#fin").css("left",ex0);
-
+        //$("#origen").css("top",y0);
+        //$("#origen").css("left",x0);
+        agregarMarcador(x0,y0,"10",null,null);
+        //$("#fin").css("top",ey0);
+        //$("#fin").css("left",ex0);
+        agregarMarcador(ex0,ey0,"10",null,null);
         log("4b","obtenerCoordenadas","y0: "+y0);
         log("4b","obtenerCoordenadas","x0: "+x0);
         log("4b","obtenerCoordenadas","y1: "+ey0);
@@ -216,4 +218,62 @@ function obtenerEscalera(piso,bloque)
                  });
     
     
+}
+
+function ini(urlM)
+{
+    console.log("Urlm: "+urlM);
+        map = new OpenLayers.Map('mapa');
+
+        var graphic = new OpenLayers.Layer.Image(
+            'Piso',
+            urlM,
+            new OpenLayers.Bounds(0, 0, 1000, 1000),
+            new OpenLayers.Size(300, 300),
+            {numZoomLevels: 10}
+        );
+
+        map.addLayer(graphic);
+        markers= new OpenLayers.Layer.Markers( "Marcadores" );
+        map.addLayer(markers);
+        var center=new OpenLayers.LonLat(500,500);
+        map.setCenter(center, 5);
+
+}
+
+
+function agregarMarcador(longitud,latitud,mensajeHtml,closeBox,overflow)
+{
+    //Variable para determinar el tamaño de los popup
+    var AutoSizeAnchoredMinSize = OpenLayers.Class(OpenLayers.Popup.Anchored, {
+            'autoSize': true, 
+            'minSize': new OpenLayers.Size(400,400)
+        });
+    var ll = new OpenLayers.LonLat(longitud,latitud);
+    var popupClass = AutoSizeAnchoredMinSize;
+    var popupContentHTML = mensajeHtml;
+
+    var feature = new OpenLayers.Feature(markers, ll);
+    feature.closeBox = closeBox;
+    feature.popupClass = popupClass;
+    feature.data.popupContentHTML = popupContentHTML;
+
+    feature.data.overflow = (overflow) ? "auto" : "hidden";
+
+    var marker = feature.createMarker();
+
+    var markerClick = function (evt) {
+    if (this.popup == null)
+    {
+        this.popup = this.createPopup(this.closeBox);
+        mapa.addPopup(this.popup);
+        this.popup.show();
+    } else {
+        this.popup.toggle();
+    }
+        currentPopup = this.popup;
+        OpenLayers.Event.stop(evt);
+    };
+    marker.events.register("mousedown", feature, markerClick);
+    markers.addMarker(marker);
 }

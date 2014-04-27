@@ -1,0 +1,159 @@
+@charset "utf-8";
+/* CSS Document */
+
+a{
+	text-decoration:none;
+}
+h1{
+	font-size:36px;
+}
+
+/*----------------------INICIO CÓDIGO-------------------*/
+
+body{
+	background-image:url(../images/background.jpg);
+	background-repeat:no-repeat;
+	width:640px;
+	height:1136px;
+}
+
+header{
+	width:639px;
+	height:283px;
+}
+
+#botonesArriba{
+	width:627px;
+	height:84px;
+	margin-top:69px;
+	margin-left:0px;	
+}
+
+#btAtras{
+	float:left;
+	width:108px;
+	height:27px;
+	margin-top:27px;
+	margin-left:18px;
+	background-image:url(../images/btAtrasFondo.svg);
+	background-repeat:no-repeat;
+}
+
+#btAtras p{
+	font-family:'Allerta', sans-serif;
+	color:#FFF;
+	text-align:center;
+	font-size:24px;
+	margin-top:0px;
+}
+
+#btAtras a{
+	color:#FFF;
+	padding-left:9px;
+}
+
+#btAtras:hover{
+	background-image:url(../images/btAtrasFondoOver.svg);
+	background-repeat:no-repeat;
+}
+
+a#Logopeque{
+	float:left;
+	width:173px;
+	height:80px;
+	margin-top:-12px;
+	margin-left:109px;
+}
+
+a#btconfig{
+	float:left;
+	width:32px;
+	height:32px;
+	margin-top:22px;
+	margin-left:127px;
+	background: url(../images/btconfig.svg);
+}
+a#btconfig:link { background-position: left; }
+a#btconfig:hover { background-position: right!important; }
+
+a#btrefresh{
+	float:left;
+	width:37.91px;
+	height:33.07px;
+	margin-top:22px;
+	margin-left:22px;
+	background: url(../images/btrefresh.svg);
+}
+a#btrefresh:link { background-position: left; }
+a#btrefresh:hover { background-position: right!important; }
+
+
+
+
+section{
+	width:612px;
+	height:665px;
+	margin-top:-187px;
+	margin-left:26px;
+	background-image:url(../images/FondoBlancoTP.svg);
+	background-repeat:no-repeat;
+	font-family:'Allerta', sans-serif;
+	color:#6d6c6c;
+	font-size:22px;
+	font-weight:400;
+}
+
+#Titulo{
+	width:471px;
+	height:87px;
+	margin-top:0px;
+	margin-left:37px;
+	padding-top:44px;
+}
+
+#tituloInfo{
+	width:518px;
+	height:62px;
+	margin-top:0px;
+	margin-left:0px;
+}
+#tituloInfo p{
+	color:#CCC;
+	margin-top:-31px;
+	margin-left:0px;
+}
+
+#Info{
+	width:550px;
+	height:427px;
+	margin-top:36px;
+	margin-left:0px;
+}
+
+#linea{
+	float:left;
+	margin-top:0px;
+	margin-left:53px;
+}
+
+#InfoServicio{
+	width:460px;
+	height:156px;
+	margin-top:0px;
+	margin-left:116px;
+	color:#CCC;
+	text-align:justify;
+}
+
+#InfoServicio h2{
+	color:#6d6c6c;
+	font-size:28px;
+}
+
+footer{
+	width:559px;
+	height:306px;
+	margin-top:20px;
+	margin-left:52px;
+}
+

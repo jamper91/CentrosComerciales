@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*----------------------INICIO CÓDIGO-------------------*/
+
+
+
+#Logocc{
+	width:555px;
+	margin-top:376px;
+	margin-left:0px;
+	display:block;
+}
+
+#Slogan{
+	float:left;
+	width:555px;
+	height:72px;
+	margin-top:0px;
+	margin-left:16px;
+	font-family: 'Allerta', sans-serif;
+	color:#949494;
+	font-size:25px;
+	letter-spacing:5px;
+	text-align:center;
+	word-spacing:-6px;	
+}
+footer{
+	width:322px;
+	height:162px;
+	margin-top:213px;
+	margin-left:281px;
+}
+
+
+#texto{
+	float:left;
+	width:144px;
+	height:33px;
+	margin-top:76px;
+	margin-left:0px;
+	font-family: 'Allerta', sans-serif;
+	color:#4a4a4a;
+	font-size:18px;
+	word-spacing:0px
+}
+
+#LogoEmpresa{
+	float:left;
+	width:132px;
+	height:136px;
+	margin-top:0px;
+	margin-left:0px;
+}

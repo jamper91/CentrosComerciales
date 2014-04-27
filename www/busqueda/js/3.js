@@ -1,4 +1,5 @@
 /*Esta pagina se encarga de mostrar informacion de un local en especifico*/
+var idCentroComercial;
 $(document).ready(function()
 {
     $(function()
@@ -11,7 +12,7 @@ $(document).ready(function()
     $("#comoLlegar").click(
         function(e)
         {
-            redirigir("4a.html");
+            redirigir("4a.html?idCentroComercial="+idCentroComercial);
         }
     );
     $("#promociones").click(
@@ -22,7 +23,7 @@ $(document).ready(function()
     $("#informacionCentroComercial").click(
         function(e)
         {
-            redirigir("5a.html?idCentroComercial="+$(this).attr("idCentro"));
+            redirigir("5a.html?idCentroComercial="+idCentroComercial);
         }
     );
     $("#masInformacion").click(
@@ -34,6 +35,7 @@ $(document).ready(function()
 
 function getInfoLocal(idLocal)
 {
+    var estaVacion=true;
     var url=url_base+"almacenes/getinformacionlocal.xml";
     var datos={
         idLocal:idLocal
@@ -61,17 +63,13 @@ function getInfoLocal(idLocal)
                     $("#descripcion").text(descripcion);
                     
                     //Modifico informacion de los botones, pero no sera visible al usuario
-                    
-                    $("#informacionCentroComercial").attr("idCentro",$("centroscomerciale_id",obj).text());
+                    idCentroComercial=$("centroscomerciale_id",obj).text()
+                    //$("#informacionCentroComercial").attr("idCentro",$("centroscomerciale_id",obj).text());
                 });
-            }else{
-                $("#logo").attr("src",logo);
-                $("#local").text("Local: "+idLocal);
-                $("#piso").text("Piso: "+idLocal);
-                $("#seccion").text("Seccion: "+idLocal);
-                $("#horario").text("Horario: "+idLocal);
-                $("#descripcion").text("Descripcion: "+idLocal);
             }
+                if(estaVacio)
+                 $("#centroscomerciales").append("Lo sentimos, no encontramos informacion");
+            
          });
     
     

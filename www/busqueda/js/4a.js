@@ -8,8 +8,9 @@ $(document).ready(function()
 {
     (function()
       {
+          var parametros=getUrlVars();
           /*getBanner(null,"../");*/
-          autocompletar();
+          autocompletar(parametros["idCentroComercial"]);
       }
      )();
     $("#verMapa").click(
@@ -20,13 +21,15 @@ $(document).ready(function()
     );
 });
 
-function autocompletar()
+function autocompletar(idCentroComercial)
 {
+    console.log("idCentroComercial: "+idCentroComercial);
     var locales=new Array();
 
-    var url= url_base+"almacenes/getlocales.xml";
+    //var url= url_base+"almacenes/getlocales.xml";
+    var url= url_base+"almacenes/getlocalesbycentrocomercial.xml";
     var datos={
-        
+        idCentroComercial:idCentroComercial
     };
     ajax(url,datos,function(xml)
          {
@@ -37,6 +40,8 @@ function autocompletar()
                 var idL,nombreL;
                 idL=$("id",obj).text();
                 nombreL=$("nombre",obj).text();
+                nombreL=cambiarAcentos(nombreL);
+                nombreL=cambiarAcentos2(nombreL);
                 locales.push({id:idL,value:nombreL});
             });
          });

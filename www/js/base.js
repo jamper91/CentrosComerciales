@@ -1,5 +1,5 @@
 /*var url_base="http://192.168.0.13/CentrosComercialesWeb/";*/
-var url_base="http://192.168.0.11/CentrosComercialesWeb/";
+var url_base="http://192.168.0.12/CentrosComercialesWeb/";
 
 function salir()
 {
@@ -64,34 +64,41 @@ function redirigir(url)
 {
     $(location).attr("href",url);
 }
-/*Esta funcion se encarga de obtener el banner correspondiente a la vista*/
-function getBanner(vista,ruta)
+/*
+Esta funcion se encarga de obtener el banner correspondiente a la vista
+Parametros:
+Vista: Lugar desde donde se llama a la funcion
+cc: Id del centro comercial
+categoria: Categoria donde se encuentra
+tienda: Id de la tienda
+*/
+
+function getBanner(vista,idCentroComercial,idCategoria,idAlmacen)
 {
-    if(vista!=null)
+    var url="";
+    var datos={
+        vista:vista,
+        idCentroComercial:idCentroComercial,
+        idCategoria:idCategoria,
+        idAlmacen:idAlmacen
+    };
+    var xml=ajax(url,datos);
+    if(xml!=null)
     {
-        log("base","getBanner","la vista no es nula");
+        log("base","getBanner","el xml no es nulo");
+        $("datos",xml).each(
+            function()
+            {
+                var urlImagen;
+                $("#banner").attr("src",urlImagen);
+            }
+        );
     }else{
-        log("base","getBanner","la vista es nula");
-        var url="";
-        var datos={
-        };
-        var xml=ajax(url,datos);
-        if(xml!=null)
-        {
-            log("base","getBanner","el xml no es nulo");
-            $("",xml).each(
-                function()
-                {
-                    var urlImagen;
-                    $("#banner").attr("src",urlImagen);
-                }
-            );
-        }else{
-            log("base","getBanner","el xml es nulo");
-            $("#banner").attr("src",ruta+"js/owl-carousel/img/responsive.png");
-        }
-        
+        log("base","getBanner","el xml es nulo");
+        $("#banner").attr("src",ruta+"js/owl-carousel/img/responsive.png");
     }
+        
+    
 }
 function imprimirObjeto(object)
 {
@@ -115,7 +122,112 @@ function xmlToString(xmlData) {
         xmlString = (new XMLSerializer()).serializeToString(xmlData);
     }
     return xmlString;
-}  
+}
+function cambiarAcentos(texto)
+{
+    var regex = new RegExp('%20', 'g');
+    texto = texto.replace(regex, ' ');
+    //Url acentos minuscula
+    regex = new RegExp('%C3%A1', 'g');
+    texto = texto.replace(regex, '&aacute;');
+    regex = new RegExp('%C3%A9', 'g');
+    texto = texto.replace(regex, '&eacute;');
+    regex = new RegExp('%C3%AD', 'g');
+    texto = texto.replace(regex, '&iacute;');
+    regex = new RegExp('%C3%B3', 'g');
+    texto = texto.replace(regex, '&oacute;');
+    regex = new RegExp('%C3%BA', 'g');
+    texto = texto.replace(regex, '&uacute;');
+    regex = new RegExp('%C3%B1', 'g');
+    texto = texto.replace(regex, '&ntilde;');
+    regex = new RegExp('%C3%BC', 'g');
+    texto = texto.replace(regex, '&uuml;');
+    
+    //Url acentos mayuscula
+    regex = new RegExp('%C3%81', 'g');
+    texto = texto.replace(regex, '&Aacute;');
+    regex = new RegExp('%C3%89', 'g');
+    texto = texto.replace(regex, '&Eacute;');
+    regex = new RegExp('%C3%8D', 'g');
+    texto = texto.replace(regex, '&Iacute;');
+    regex = new RegExp('%C3%93', 'g');
+    texto = texto.replace(regex, '&Oacute;');
+    regex = new RegExp('%C3%9A', 'g');
+    texto = texto.replace(regex, '&Uacute;');
+    regex = new RegExp('%C3%91', 'g');
+    texto = texto.replace(regex, '&Ntilde;');
+    regex = new RegExp('%C3%9C', 'g');
+    texto = texto.replace(regex, '&Uuml;');
+    
+    //Acentos en minuscula
+    regex = new RegExp('á', 'g');
+    texto = texto.replace(regex, '&aacute;');
+    regex = new RegExp('é', 'g');
+    texto = texto.replace(regex, '&eacute;');
+    regex = new RegExp('í', 'g');
+    texto = texto.replace(regex, '&iacute;');
+    regex = new RegExp('ó', 'g');
+    texto = texto.replace(regex, '&oacute;');
+    regex = new RegExp('ú', 'g');
+    texto = texto.replace(regex, '&uacute;');
+    regex = new RegExp('ñ', 'g');
+    texto = texto.replace(regex, '&ntilde;');
+    regex = new RegExp('ü', 'g');
+    texto = texto.replace(regex, '&Uuml;');
+    //Acentos en mayuscula
+    regex = new RegExp('Á', 'g');
+    texto = texto.replace(regex, '&Aacute;');
+    regex = new RegExp('É', 'g');
+    texto = texto.replace(regex, '&Eacute;');
+    regex = new RegExp('Í', 'g');
+    texto = texto.replace(regex, '&Iacute;');
+    regex = new RegExp('Ó', 'g');
+    texto = texto.replace(regex, '&Oacute;');
+    regex = new RegExp('Ú', 'g');
+    texto = texto.replace(regex, '&Uacute;');
+    regex = new RegExp('Ñ', 'g');
+    texto = texto.replace(regex, '&Ntilde;');
+    regex = new RegExp('Ü', 'g');
+    texto = texto.replace(regex, '&Uuml;');
+    
+    return texto;
+    
+}
+function cambiarAcentos2(texto)
+{
+    //Acentos en minuscula
+    regex = new RegExp('&aacute;', 'g');
+    texto = texto.replace(regex, 'á');
+    regex = new RegExp('&eacute;', 'g');
+    texto = texto.replace(regex, 'é');
+    regex = new RegExp('&iacute;', 'g');
+    texto = texto.replace(regex, 'í');
+    regex = new RegExp('&oacute;', 'g');
+    texto = texto.replace(regex, 'ó');
+    regex = new RegExp('&uacute;', 'g');
+    texto = texto.replace(regex, 'ú');
+    regex = new RegExp('&ntilde;', 'g');
+    texto = texto.replace(regex, 'ñ');
+    regex = new RegExp('&uuml;', 'g');
+    texto = texto.replace(regex, 'ü');
+    //Acentos en mayuscula
+    regex = new RegExp('&Aacute;', 'g');
+    texto = texto.replace(regex, 'Á');
+    regex = new RegExp('&Eacute;', 'g');
+    texto = texto.replace(regex, 'É');
+    regex = new RegExp('&Iacute;', 'g');
+    texto = texto.replace(regex, 'Í');
+    regex = new RegExp('&Oacute;', 'g');
+    texto = texto.replace(regex, 'Ó');
+    regex = new RegExp('&Uacute;', 'g');
+    texto = texto.replace(regex, 'Ú');
+    regex = new RegExp('&Ntilde;', 'g');
+    texto = texto.replace(regex, 'Ñ');
+    regex = new RegExp('&Uuml;', 'g');
+    texto = texto.replace(regex, 'Ü');
+    return texto;
+    
+}
 
 /* ##################################### VARIABLES DE SESION ##################################### */
 function crearVariableSesion(nombre, valor)

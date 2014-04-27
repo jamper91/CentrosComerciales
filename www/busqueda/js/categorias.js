@@ -26,6 +26,7 @@ $(document).ready(function()
 
 function getCategoriasByCentroComercial(urlD,idCentroComercial)
 {
+    var estaVacio=true;
     var url=url_base+"centroscomerciales/getcetegoriasbycentrocomercial.xml";
     var datos={
         idCentroComercial:idCentroComercial
@@ -35,20 +36,34 @@ function getCategoriasByCentroComercial(urlD,idCentroComercial)
          {
             if(xml!=null)
             {
+                var html="<li><a href='$1&idCategoria=$2&nombreCategoria=$3'>$3</a><li>";
+                    html=html.replace("$1",urlD);
+                    html=html.replace("$2",0);
+                    html=html.replace("$3","Todas");
+                    html=html.replace("$3","Todas");
+                    $("#categorias").append(html);
                 $("datos",xml).each(function()
                 {
+                    
                     var obj=$(this).find("c");
                     var valor,texto;
                     valor=$("id",obj).text();
                     texto=$("nombre",obj).text();
-                    var html="<li><a href='$1&idCategoria=$2&nombreCategoria=$3'>$3</a><li>";
-                    html=html.replace("$1",urlD);
-                    html=html.replace("$2",valor);
-                    html=html.replace("$3",texto);
-                    html=html.replace("$3",texto);
-                    $("#categorias").append(html);
+                    if(valor)
+                    {
+                        estaVacio=false;
+                        html="<li><a href='$1&idCategoria=$2&nombreCategoria=$3'>$3</a><li>";
+                        html=html.replace("$1",urlD);
+                        html=html.replace("$2",valor);
+                        html=html.replace("$3",texto);
+                        html=html.replace("$3",texto);
+                        $("#categorias").append(html);
+                    }
+                    
                 });
             }
+             if(estaVacio)
+                 $("#categorias").html("Lo sentimos, no encontramos informacion");
          });
     
     

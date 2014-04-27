@@ -9,15 +9,15 @@ $(document).ready(function()
     (function()
      {
          //getBanner(null,"../");
-         
+         autocompletar();
          //Determino si llego el id de la ciudad
          if(parametros["idCiudad"])
          {
             
              idCiudad=parametros["idCiudad"];
              nombreCiudad=parametros["nombreCiudad"];
-             var regex = new RegExp('%20', 'g');
-             nombreCiudad = nombreCiudad.replace(regex, ' ');
+             nombreCiudad=cambiarAcentos(nombreCiudad);
+             nombreCiudad=cambiarAcentos2(nombreCiudad);
              //Modifico el texto que dice le nombre de la ciudad
              $("#lnkCiudad").text(nombreCiudad);
              //Modifico y habilito el link para buscar centros comerciales
@@ -26,6 +26,8 @@ $(document).ready(function()
          {
              idCiudad=getIdCiudad();
              nombreCiudad=getNombreCiudad();
+             nombreCiudad=cambiarAcentos(nombreCiudad);
+             nombreCiudad=cambiarAcentos2(nombreCiudad);
              //Modifico el texto que dice le nombre de la ciudad
              $("#lnkCiudad").text(nombreCiudad);
              //Modifico y habilito el link para buscar centros comerciales
@@ -33,11 +35,11 @@ $(document).ready(function()
          }
          if(parametros["idCentroComercial"])
          {
-             
+             console.log("Llego un id de cc");
              idCentro=parametros["idCentroComercial"];
              nombreCentro=parametros["nombreCentroComercial"];
-             var regex = new RegExp('%20', 'g');
-             nombreCentro = nombreCentro.replace(regex, ' ');
+             nombreCentro=cambiarAcentos(nombreCentro);
+             nombreCentro=cambiarAcentos2(nombreCentro);
              //Modifico el texto que dice le nombre del centro comercial
              $("#lnkCentroComercial").text(nombreCentro);
              //Modifico y habilito el link para buscar categorias
@@ -48,10 +50,12 @@ $(document).ready(function()
              
              idCategoria=parametros["idCategoria"];
              nombreCategoria=parametros["nombreCategoria"];
-             var regex = new RegExp('%20', 'g');
-             nombreCategoria = nombreCategoria.replace(regex, ' ');
+             nombreCategoria=cambiarAcentos(nombreCategoria);
+             nombreCategoria=cambiarAcentos2(nombreCategoria);
+             
              //Modifico el texto que dice le nombre del centro comercial
-             $("#lnkCategoria").text(nombreCategoria);
+             $("#lnkCategorias").text(nombreCategoria);
+              
              
          }
      })();
@@ -71,105 +75,19 @@ $(document).ready(function()
         var idCentroComercial=$("#centroscomerciales").val();
         getCategoriasByCentroComercial(idCentroComercial);
     });
+    $("#btnBuscar").click(
+        function(e)
+        {
+            e.preventDefault();
+            var url="2a.html?idCiudad=$1&idCentroComercial=$2&idCategoria=$3";
+            url=url.replace("$1",idCiudad);
+            url=url.replace("$2",idCentro);
+            url=url.replace("$3",idCategoria);
+            redirigir(url);
+        }
+    );
 });
 
-
-/*Se encarga de obtener las ciudades de la base de datos y mostrarlas en un select*/
-function getCiudades()
-{
-    
-
-    var url=url_base+"Ciudades/index.xml";
-    var datos={
-    };
-
-    
-    ajax(url,datos,
-     function(xml)
-     {
-        if(xml!=null)
-        {
-            $("#ciudades").append("<option value='0'>Seleccione...</option>");
-            $("ciudades",xml).each(function()
-            {
-                
-                var obj=$(this).find("Ciudade");
-                var valor,texto;
-                valor=$("id",obj).text();
-                texto=$("nombre",obj).text();
-                if(valor)
-                {
-                    var html="<option value='"+valor+"'>"+texto+"</option>";
-                    $("#ciudades").append(html);
-                }
-            });
-        }else{
-            log("1a","getCiudades","el xml es nulo");
-        }
-         //Determino si llego alguna ciudad por la 
-     });
-    
-    
-}
-
-function getCentrosComercialesByCiudad(idCiudad)
-{
-    //Eliminos las opciones anteriores
-    $("#centroscomerciales").html("");
-    var url=url_base+"centroscomerciales/getCentrosComercialesByCiudad/$1.xml";
-    url=url.replace("$1",idCiudad)
-    var datos={
-    };
-    var xml=ajax(url,datos,
-                 function(xml)
-                 {
-                    $("#centroscomerciales").append("<option value='0'>Todos</option>");
-                    $("datos",xml).each(function()
-                    {
-                        var obj=$(this).find("Centroscomerciale");
-                        var valor,texto;
-                        
-                        valor=$("id",obj).text();
-                        texto=$("nombre",obj).text();
-                        console.log("valor: "+valor);
-                        if(valor)
-                        {
-                            var html="<option value='"+valor+"'>"+texto+"</option>";
-                            $("#centroscomerciales").append(html);    
-                        }
-                        
-                    });
-                 });
-    
-}
-function getCategoriasByCentroComercial(idCentroComercial)
-{
-    log("busquedaTienda","getCategoriasByCentroComercial","idCentroComercial: "+idCentroComercial);
-    var url=url_base+"centroscomerciales/getcetegoriasbycentrocomercial/$1.xml";
-    url=url.replace("$1",idCentroComercial);
-    var datos={
-    };
-    $("#categorias").html("");
-    ajax(url,datos,
-        function(xml)
-         {
-            if(xml!=null)
-            {
-                $("#categorias").append("<option value='0'>Todos</option>");
-                $("datos",xml).each(function()
-                {
-                    var obj=$(this).find("c");
-                    var valor,texto;
-                    valor=$("id",obj).text();
-                    texto=$("nombre",obj).text();
-                    var html="<option value='"+valor+"'>"+texto+"</option>";
-                    $("#categorias").append(html);
-                });
-            }
-         });
-    
-    
-}
 /*Esta funcion va  a la vista 2a y le envia los parametros necesarios*/
 function goTo2a()
 {
@@ -200,6 +118,8 @@ function autocompletar()
                 var idL,nombreL;
                 idL=$("id",obj).text();
                 nombreL=$("nombre",obj).text();
+                nombreL=cambiarAcentos(nombreL);
+                nombreL=cambiarAcentos2(nombreL);
                 locales.push({id:idL,value:nombreL});
             });
          });
@@ -215,8 +135,13 @@ function autocompletar()
             //Envio al usuario a la vista 3
             var url="2b.html?idLocal=$1";
             url=url.replace("$1",ui.item.id);
-            log("1a","autocompletar","url: "+url);
-            redirigir("2b.html?idLocal="+ui.item.id);
+            redirigir(url);
+        },
+        response: function(event, ui) {
+            if (!ui.content.length) {
+                var noResult = { value:"",label:"Sin coincidencia" };
+                ui.content.push(noResult);
+            }
         }
     });
 }

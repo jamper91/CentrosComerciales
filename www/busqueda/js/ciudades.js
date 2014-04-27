@@ -15,7 +15,7 @@ $(document).ready(function()
 /*Se encarga de obtener las ciudades de la base de datos y mostrarlas en un select*/
 function getCiudades(urlD)
 {
-    
+    estaVacio=true;
     console.log("urlD: "+urlD);
     var url=url_base+"ciudades/index.xml";
     var datos={
@@ -38,6 +38,7 @@ function getCiudades(urlD)
                 texto=$("nombre",obj).text();
                 if(valor)
                 {
+                    estaVacio=false;
                     var html="<li><a href='$1?idCiudad=$2&nombreCiudad=$3'>$3</a><li>";
                     html=html.replace("$1",urlD);
                     html=html.replace("$2",valor);
@@ -46,9 +47,11 @@ function getCiudades(urlD)
                     $("#ciudades").append(html);
                 }
             });
-        }else{
-            log("ciudades","getCiudades","el xml es nulo");
         }
+         
+        if(estaVacio)
+            $("#ciudades").html("Lo sentimos, no encontramos informacion");
+         
      });
     
     
