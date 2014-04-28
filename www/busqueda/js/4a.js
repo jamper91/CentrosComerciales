@@ -20,7 +20,14 @@ $(document).ready(function()
         }
     );
 });
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 function autocompletar(idCentroComercial)
 {
     console.log("idCentroComercial: "+idCentroComercial);

@@ -1,34 +1,26 @@
-<!DOCTYPE html><!--HTML5 doctype-->
-<html>
+<!doctype html>
+
+<html class="">
+
 <head>
-	<title>Centros Comerciales</title>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-	<style type="text/css">
-		/* Prevent copy paste for all elements except text fields */
-		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
-		input, textarea  { -webkit-user-select:text; }
-		body { background-color:white; color:black }
-	</style>
-	<script src='../intelxdk.js'></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa 04B</title>
+<link href="../css/mapa.css" rel="stylesheet" type="text/css">
+<link href="../css/boilerplate.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
+
+
+<script src='../intelxdk.js'></script>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
-    <!--Jquery UI-->
-    <link rel="stylesheet" href="../css/no-theme/jquery-ui-1.10.4.custom.min.css">
-    <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
-    <!--Fin Jquery UI-->
-    <!--<script type="text/javascript" src="js/jq.appframework.js"></script>-->
+    <script type="text/javascript" src="../js/jquery.bpopup.min.js"></script>
     <script type="text/javascript" src="../js/base.js"></script>
     <script type="text/javascript" src="js/4b.js"></script>
     
     <!-- Open Layers -->
     <script src="http://openlayers.org/api/OpenLayers.js"></script>
     <!-- Fin Open Layers -->
-    <!--IPicture-->
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/iPicture.css"/>
-    <script type="text/javascript" src="../js/jquery.ipicture.min.js"></script> 
-    <!--Fin IPicture-->
-    
 	<script type="text/javascript">
 		/* This code is used to run as soon as Intel activates */
 		var onDeviceReady=function(){
@@ -40,19 +32,50 @@
     <style type="text/css">
                 .smallmap {
                     width: 100%;
-                    height: 300px;
+                    height: 500px;
                 }
         </style>
-
 </head>
 <body>
-   
-    <br>
+
+
+  <div id="Header">
+  
+  		<div class="atras">
+            <a href="#"><img src="../images/arrow-left.svg"> Atras</a>
+        </div>
+        
+        <div class="botonesArriba">
+            <a href="#" class="btrefresh"></a>
+        	<a href="#" class="btconfig"></a>
+
+        </div>
+        
+    <div class="Logocc">
+        	<a href="Index.html" class="logo"></a>
+    </div>
     
     <div id="mapa" class="smallmap">
- 
     </div>
-     <input type="button" id="continuar" value="Continuar" />
-    <img id="banner" />
+    
+	<input type="button" id="continuar" value="Continuar" />
+  
+	  <div id="footer">
+  	<div id="Slider">
+        
+        		<div class="slider-wrapper theme-default">
+    				<div class="ribbon"></div>
+    					<div id="slider" class="nivoSlider">
+                     		 <img src="../images/01.jpg" alt="" />
+    					</div>
+               </div>
+  </div>
+  <div id="element_to_pop_up" style="background-color:#fff;    border-radius:15px;    color:#000;    display:none;     padding:20px;    width:50px;    height: 50px;" align="center">
+    <img src="../images/loading.gif" />
+</div>  
+
+  
+  
+
 </body>
 </html>

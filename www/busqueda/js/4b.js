@@ -20,6 +20,7 @@ $(document).ready(function()
       {
           /*getBanner(null,"../");*/
           var parametros=getUrlVars();
+          mostrarDialogo();
           obtenerCoordenadas(parametros["idO"],parametros["idF"],function()
                              {
                                  console.log("CAsi entro");
@@ -27,6 +28,7 @@ $(document).ready(function()
                                  obtemerCoordenadas2(parametros["idF"],function()
                                                      {
                                                          analisis();
+                                                         ocultarDialogo();
                                                      });
                              });
       }
@@ -46,7 +48,14 @@ $(document).ready(function()
     );
 
 });
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 /*Esta funcion se encarga de obtener las coordenadas de los locales dados*/
 function  obtenerCoordenadas(idO, idF, callback)
 {
@@ -237,7 +246,7 @@ function ini(urlM)
         markers= new OpenLayers.Layer.Markers( "Marcadores" );
         map.addLayer(markers);
         var center=new OpenLayers.LonLat(500,500);
-        map.setCenter(center, 5);
+        map.setCenter(center, 1);
 
 }
 

@@ -32,41 +32,7 @@ $(document).ready(function()
     );
 });
 
-/*Se encarga de obtener las ciudades de la base de datos y mostrarlas en un select*/
-function getCiudades()
-{
-    var estaVacio=true;
-    console.log("Entre getCiudades");
-    $("#ciudades").html("");
-    var url=url_base+"ciudades/index.xml";
-    var datos={
-    };
-    ajax(url,datos,function(xml)
-         {
-            if(xml!=null)
-            {
-                $("#ciudades").append("<option value='0'>Selecciones ..</option>");
-                $("datos",xml).each(function()
-                {
-                    var obj=$(this).find("Ciudade");
-                    var valor,texto;
-                    valor=$("id",obj).text();
-                    texto=$("nombre",obj).text();
-                    if(valor)
-                    {
-                        estaVacio=false;
-                        var html="<option value='"+valor+"'>"+texto+"</option>";
-                        $("#ciudades").append(html);
-                    }
-                    
-                });
-            }
-             if(estaVacio)
-                 $("#ciudades").append("Lo sentimos, no encontramos informacion");
-         });
-    
-    
-}
+
 /*Esta funcion se encarga de obtener los nombre de los centros comerciales para que se pueda ver la funcion de autocompletar*/
 function autocompletar()
 {

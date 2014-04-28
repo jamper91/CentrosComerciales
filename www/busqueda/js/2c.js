@@ -12,9 +12,17 @@ $(document).ready(
          })();
     }
 );
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 function getCentrosComerciales(idCiudad)
 {
+    mostrarDialogo();
     var estaVacio=true;
     var url=url_base+"centroscomerciales/getcentroscomercialesbyciudad.xml";
     var datos={
@@ -33,7 +41,10 @@ function getCentrosComerciales(idCiudad)
                     if(idC)
                     {
                         estaVacio=false;
-                        var html="<li><a href='5a.html?idCentroComercial=$1'>$2</a></li>";
+                        var html="<li class='todos'>"+
+                             "<a href='5a.html?idCentroComercial=$1' id='lnktodos'>$2</a>"+
+                             "<a class='go'></a>"+
+                             "</li>";
                         html=html.replace("$1",idC);
                         html=html.replace("$2",nombreC)
                         $("#centroscomerciales").append(html);
@@ -41,6 +52,7 @@ function getCentrosComerciales(idCiudad)
                    
                 });
             }
+             ocultarDialogo();
              if(estaVacio)
                  $("#centroscomerciales").append("Lo sentimos, no encontramos informacion");
          });

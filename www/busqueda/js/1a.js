@@ -58,6 +58,7 @@ $(document).ready(function()
               
              
          }
+         getBanner("1a",null,null,null,"../");
      })();
     
     /*Function que se activa al cambiar un elemento del select ciudades*/

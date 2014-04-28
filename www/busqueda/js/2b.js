@@ -9,11 +9,19 @@ $(document).ready(function()
       }
      );
 });
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 function getCentrosComercialesByLocal(idLocal)
 {
+    mostrarDialogo();
     var estaVacio=true;
-    var url=url_base+"Almacenes/getcentroscomercialesbylocal.xml";
+    var url=url_base+"almacenes/getcentroscomercialesbylocal.xml";
     var datos={
         idLocal:idLocal
     };
@@ -26,11 +34,15 @@ function getCentrosComercialesByLocal(idLocal)
                     var obj=$(this).find("cc");
                     var nombreLocal,idLocal;
                     nombreLocal=$("nombre",obj).text();
+                    obj=$(this).find("a");
                     idLocal=$("id",obj).text();
                     if(idLocal)
                     {
                         estaVacio=false;
-                        var html="<li><a href='3.html?idLocal=$1'>$2</a></li>";
+                        var html="<li class='todos'>"+
+                             "<a href='3.html?idLocal=$1' id='lnktodos'>$2</a>"+
+                             "<a class='go'></a>"+
+                             "</li>";
                         html=html.replace("$1",idLocal);
                         html=html.replace("$2",nombreLocal)
                         $("#locales").append(html);
@@ -38,6 +50,7 @@ function getCentrosComercialesByLocal(idLocal)
                     
                 });
             }
+             ocultarDialogo();
             if(estaVacio)
                  $("#locales").append("Lo sentimos, no encontramos informacion");
          });

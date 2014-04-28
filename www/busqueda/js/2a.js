@@ -9,9 +9,17 @@ $(document).ready(function(e)
      })();
     
 });
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 function getLocales(idCiudad,idCentroComercial,idCategoria)
 {
+    mostrarDialogo();
     var estaVacio=true;
     var url=url_base+"almacenes/getlocalesbybusqueda.xml";
     var datos={
@@ -33,7 +41,11 @@ function getLocales(idCiudad,idCentroComercial,idCategoria)
                     if(idLocal)
                     {
                         estaVacio=false;
-                        var html="<li><a href='3.html?idLocal=$1'>$2</a></li>";
+                        
+                        var html="<li class='todos'>"+
+                             "<a href='3.html?idLocal=$1' id='lnktodos'>$2</a>"+
+                             "<a class='go'></a>"+
+                             "</li>";
                         html=html.replace("$1",idLocal);
                         html=html.replace("$2",nombreLocal)
                         $("#locales").append(html);
@@ -41,6 +53,7 @@ function getLocales(idCiudad,idCentroComercial,idCategoria)
                     
                 });
             }
+             ocultarDialogo();
              if(estaVacio)
                  $("#locales").append("Lo sentimos, no encontramos informacion");
          });

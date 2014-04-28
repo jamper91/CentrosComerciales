@@ -1,237 +1,278 @@
 @charset "utf-8";
-/* CSS Document */
-
-a{
-	text-decoration:none;
+/* Simple fluid media
+   Note: Fluid media requires that you remove the media's height and width attributes from the HTML
+   http://www.alistapart.com/articles/fluid-images/ 
+*/
+img, object, embed, video {
+	max-width: 100%;
+}
+/* IE 6 does not support max-width so default to width 100% */
+.ie6 img {
+	width:100%;
 }
 
-/*----------------------INICIO CÓDIGO-------------------*/
+@font-face {
+	font-family: Allerta;
+	src: url('../fonts/Allerta-Regular.ttf');
+}
+@font-face {
+	font-family: PT Sans Normal;
+	src: url('../fonts/PT_Sans-Web-Regular.ttf');
+}
+@font-face {
+	font-family: PT Sans Bold;
+	src: url('../fonts/PT_Sans-Web-Bold.ttf');
+}
 
 body{
-	background-image:url(../images/background.jpg);
-	background-repeat:no-repeat;
-	width:640px;
-	height:1136px;
+	background-image: url(../images/background.jpg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
 }
 
-header{
-	width:639px;
-	height:283px;
-}
 
-#botonesArriba{
-	width:627px;
-	height:84px;
-	margin-top:69px;
-	margin-left:0px;	
-}
+#Header{
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+	margin-top:-32px;
 
-#btAtras{
+
+
+}
+.atras{
 	float:left;
-	width:108px;
-	height:27px;
-	margin-top:27px;
-	margin-left:18px;
-	background-image:url(../images/btAtrasFondo.svg);
-	background-repeat:no-repeat;
-}
-
-#btAtras p{
-	font-family:'Allerta', sans-serif;
-	color:#FFF;
-	text-align:center;
-	font-size:24px;
-	margin-top:0px;
-}
-
-#btAtras a{
-	color:#FFF;
-	padding-left:9px;
-}
-
-#btAtras:hover{
-	background-image:url(../images/btAtrasFondoOver.svg);
-	background-repeat:no-repeat;
-}
-
-a#Logopeque{
-	float:left;
-	width:173px;
-	height:80px;
-	margin-top:-12px;
-	margin-left:109px;
-}
-
-a#btconfig{
-	float:left;
-	width:32px;
+	width:100%;
 	height:32px;
-	margin-top:22px;
-	margin-left:127px;
-	background: url(../images/btconfig.svg);
-}
-a#btconfig:link { background-position: left; }
-a#btconfig:hover { background-position: right!important; }
-
-a#btrefresh{
-	float:left;
-	width:37.91px;
-	height:33.07px;
-	margin-top:22px;
-	margin-left:22px;
-	background: url(../images/btrefresh.svg);
-}
-a#btrefresh:link { background-position: left; }
-a#btrefresh:hover { background-position: right!important; }
-
-
-section{
-	width:625px;
-	height:620px;
-	margin-top:-182px;
-	margin-left:19px;
-	font-family:'Allerta', sans-serif;
-	font-size:24px;
-	color:#7d7d7d;
+	padding-left:15px;
+	padding-top:40px;
+	display: inline-block;
 }
 
-#InfoArriba{
-	width:625px;
-	height:315px;
+
+
+.atras a{
+	text-decoration:none;
+	color: #FFF;
+	font-family: Allerta;
+    font-size: 6vw;
+}
+.atras a:hover{
+	width:100%;
+	height:32px;
+	color: #FFF;
+	font-family: Allerta;
+    font-size: 6vw;
+	background-color:#dcdfe0;
+	background-repeat:no-repeat;
+	background-position:left center;
+}
+
+.atras .back{
+    display: inline-block;
+    height: 45px;
+    width: 25px;
+    float: right;
+    background-image: url(../images/btAtrasFondo.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+#Contenedor {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+	margin-top:-41px;
+
+}
+.botonesArriba {
+    width: 100%;
+    height: 17px;
+    padding-right: 15px;	
+}
+
+.botonesArriba a{
+    width: 27px;
+    height: 33px;
+    display: inline-block;
+    float: right;
+    padding-right: 10px;
+    background-size: contain;
+}
+
+.botonesArriba .btconfig{
+	background-image: url(../images/icoconfig.svg);
+	background-repeat:no-repeat;
+}
+
+.botonesArriba .btconfig:hover{
+	background-image:url(../images/btconfigOver.svg);
+	background-repeat:no-repeat;
+}
+
+.botonesArriba .btrefresh{
+	background-image: url(../images/recargar.svg);
+	background-repeat:no-repeat;
+}
+
+.botonesArriba .btrefresh:hover{
+	background-image:url(../images/btrefreshOver.svg);
+	background-repeat:no-repeat;
+}
+
+
+
+
+.Logocc{
+	clear: both;
+	float: left;
+	margin-top:-35px;
+	margin-left: -27px;
+	width: 100%;
+	display: inline-block;
+
+}
+.Logocc a{
+	width:276px;
+	height:110px;
+	display: inline-block;
+    float: right;
+	background-size: contain;
+	
+}
+
+.Logocc .logo{
+	background-image:url(../images/imagocc%20Home.svg);
+	background-repeat:no-repeat;
+	
+	}
+
+#Contenedor{
+	width:100%;
+	font-family: Allerta;
+	text-align:justify;
+	font-size:15px;
+	color: #7d7d7d;
 	margin-top:0px;
 	margin-left:0px;
-	background-image:url(../images/FondoInfoArriba03.svg);
-	background-repeat:no-repeat;
 }
 
-#Ubicacion{
-	width:625px;
-	height:156px;
+#Informacion{
+	width:100%;
+	height:140px;
+	background-color:#FFF;
 }
 
-#LogoTienda{
-	float:left;
-	width:198px;
-	height:123px;
-	margin-top:10px;
-	margin-left:10px;
+.logoTienda{
+	clear: both;
+	float: left;
+	margin-top:0px;
+	margin-left:0px;
+	width: 100%;
+	display: inline-block;
 }
 
-#InfoTienda{
-	float:left;
-	width:252px;
-	height:100px;
-	margin-top:-8px;
-	margin-left:87px;
+.logoTienda .logoT{
+
+
+	margin-left:0px;
+	margin-top:0px;
+
+}
+
+.InformacionTienda{
+	float: right;
+
+	margin-right:20px;
+	margin-top:-98px;
+	display:inline-block;
 }
 
 #Descripcion{
-	width:625px;
-	height:156px;
-	margin-top:-18px;
+	width:100%;
+	height:140px;
+	background-color:#FFF;
+	opacity:0.7;
+	margin-top:-11px;
 	margin-left:0px;
-	background-image:url(../images/FondoInfoArriba03.svg);
-	background-repeat:no-repeat;
+	
 }
 #Descripcion p{
-	width:528px;
-	font-size:21px;
-	padding-top:16px;
-	padding-left:48px;
-	text-align:justify;
+	width:100%;
+	padding-top:25px;
+	padding-left:10px;
+	padding-right:10px;	
 }
 
-#InfoAbajo{
-	width:627px;
-	height:259px;
-	margin-top:73px;
-	margin-left:-41px;
+.menu{
+    width: 100%;   
+    padding: 0px;
 }
-
-ul{
-	width:627px;
-	height:259px;
-	margin-top:-35px;
-	margin-left:13px;
-}
-
-ul li{
-	width:627px;
-	height:64px;
-	margin-top:-31px;
-	margin-left:-2px;
-	padding-top:31px;
-	padding-left:34px;
-	text-decoration:none;
-	list-style:none;
-	background-image:url(../images/FondoListasCentroPeque.svg);
-	background-repeat:no-repeat;
-}
-
-ul li a{
-	float:left;
-	width:627px;
-	height64px;
-	margin-top:-12px;
+.menu li{
+    list-style-type: none;
 	margin-left:0px;
-	font-family:'Allerta', sans-serif;
-	font-size:24px;
-	color:#7d7d7d;
 }
 
-ul li#Todos{
-	width:627px;
-	height:64px;
-	margin-top:-31px;
-	margin-left:-2px;
-	padding-top:31px;
-	padding-left:34px;
-	background-image:url(../images/FondoListasPrimeroPeque.svg);
+.menu li:first-child
+{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.menu li:last-child
+{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 5px;
+}
+.menu li{
+    font-family: Allerta;
+    font-size: 4vw;
+    color: #7d7d7d;
+    background-color: #ffffff;
+    opacity:0.7;
+    padding-left: 65px;
+    height: 45px;
+    line-height: 45px;
+    background-position: 15px 9px;
+    background-repeat: no-repeat;
+    background-size: 35px 35px;
+    padding-top: 7px;
+    
+}
+.menu li:active{
+    opacity:1;
+}
+.menu li a{
+    display: inline-block;
+    text-decoration: none;
+    color: #7d7d7d;
+    /*width: 100%;*/
+}
+.menu li:hover{
+	opacity:1;
 }
 
-ul li#Todos:hover{
-	width:627px;
-	height:64px;
-	margin-top:-31px;
-	margin-left:-2px;
-	padding-top:31px;
-	padding-left:34px;
-	background-image:url(../images/FondoListasPrimeroPequeOver.svg);
+.menu .go{
+    display: inline-block;
+    height: 45px;
+    width: 25px;
+    float: right;
+    background-image: url(../images/arrow-right.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+#logo{
+	max-height:133px;
 }
 
-ul li.Centro:hover{
-	width:627px;
-	height:64px;
-	margin-top:-31px;
-	margin-left:-2px;
-	padding-top:31px;
-	padding-left:34px;
-	background-image:url(../images/FondoListasCentroPequeOver.svg);
-}
-
-ul li#Ultimo{
-	width:627px;
-	height:64px;
-	margin-top:-31px;
-	margin-left:-2px;
-	padding-top:31px;
-	padding-left:34px;
-	background-image:url(../images/FondoListasUltimoPeque.svg);
-}
-ul li#Ultimo:hover{
-	width:627px;
-	height:64px;
-	margin-top:-31px;
-	margin-left:-2px;
-	padding-top:31px;
-	padding-left:34px;
-	background-image:url(../images/FondoListasUltimoPequeOver.svg);
-}
 
 footer{
-	width:559px;
+	width:100%;
 	height:306px;
-	margin-top:27px;
-	margin-left:52px;
+	margin-top:18px;
+	margin-left:49px;
 }
-

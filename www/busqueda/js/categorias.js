@@ -21,11 +21,19 @@ $(document).ready(function()
          }
      })();
 });
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 
 
 function getCategoriasByCentroComercial(urlD,idCentroComercial)
 {
+    mostrarDialogo();
     var estaVacio=true;
     var url=url_base+"centroscomerciales/getcetegoriasbycentrocomercial.xml";
     var datos={
@@ -36,7 +44,10 @@ function getCategoriasByCentroComercial(urlD,idCentroComercial)
          {
             if(xml!=null)
             {
-                var html="<li><a href='$1&idCategoria=$2&nombreCategoria=$3'>$3</a><li>";
+                var html="<li class='todos'>"+
+                         "<a href='$1&idCategoria=$2&nombreCategoria=$3' id='lnktodos'>$3</a>"+
+                         "<a class='go'></a>"+
+                         "</li>";
                     html=html.replace("$1",urlD);
                     html=html.replace("$2",0);
                     html=html.replace("$3","Todas");
@@ -52,7 +63,10 @@ function getCategoriasByCentroComercial(urlD,idCentroComercial)
                     if(valor)
                     {
                         estaVacio=false;
-                        html="<li><a href='$1&idCategoria=$2&nombreCategoria=$3'>$3</a><li>";
+                        html="<li class='todos'>"+
+                             "<a href='$1&idCategoria=$2&nombreCategoria=$3' id='lnktodos'>$3</a>"+
+                             "<a class='go'></a>"+
+                             "</li>";
                         html=html.replace("$1",urlD);
                         html=html.replace("$2",valor);
                         html=html.replace("$3",texto);
@@ -62,6 +76,7 @@ function getCategoriasByCentroComercial(urlD,idCentroComercial)
                     
                 });
             }
+             ocultarDialogo();
              if(estaVacio)
                  $("#categorias").html("Lo sentimos, no encontramos informacion");
          });

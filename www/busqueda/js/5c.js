@@ -11,9 +11,17 @@ $(document).ready(
          })();
     }
 );
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 function getInformacion(idMedioTransporte, idCentroComercial)
 {
+    mostrarDialogo();
     log("5c","getInformacion", "idMedioTransporte: "+idMedioTransporte);
     log("5c","getInformacion", "idCentroComercial: "+idCentroComercial);
     var url=url_base+"centroscomerciales_mediostransportes/getinformacionmediotransporte.xml";
@@ -38,10 +46,18 @@ function getInformacion(idMedioTransporte, idCentroComercial)
                         obj=$(this).find("m");
                         nombre=$("nombre",obj).text();
                         $("#nombre").text(nombre);
-                        $("#informacion").val(informacion);
+                        $("#informacion").text(informacion);
                     }else{
                         console.log("entre en el else");
-                        var obj=$(this).find("cc");
+                        var obj=$(this).find("c_m");
+                        var nombre,informacion;
+                        
+                        informacion=$("descripcion",obj).text();
+                        obj=$(this).find("m");
+                        nombre=$("nombre",obj).text();
+                        $("#nombre").text(nombre);
+                        $("#informacion").text(informacion);
+                        obj=$(this).find("cc");
                         var lat,lon;
                         lat=$("lat",obj).text();
                         lon=$("lon",obj).text();
@@ -50,15 +66,8 @@ function getInformacion(idMedioTransporte, idCentroComercial)
                     
 
                 });
-            }else
-            {
-
-                    var nombre="Transporte Publico",informacion="Cojase un transmilleno y se baja donde vea que esta perdido";
-                    $("#nombre").text(nombre);
-                    $("#informacion").val(informacion);
-                    activarMapa();
-
             }
+             ocultarDialogo();
          });
     
     

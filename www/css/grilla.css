@@ -1,0 +1,136 @@
+@charset "utf-8";
+/* Simple fluid media
+   Note: Fluid media requires that you remove the media's height and width attributes from the HTML
+   http://www.alistapart.com/articles/fluid-images/ 
+*/
+img, object, embed, video {
+	max-width: 100%;
+}
+/* IE 6 does not support max-width so default to width 100% */
+.ie6 img {
+	width:100%;
+}
+
+/*
+	Dreamweaver Fluid Grid Properties
+	----------------------------------
+	dw-num-cols-mobile:		5;
+	dw-num-cols-tablet:		8;
+	dw-num-cols-desktop:	10;
+	dw-gutter-percentage:	25;
+	
+	Inspiration from "Responsive Web Design" by Ethan Marcotte 
+	http://www.alistapart.com/articles/responsive-web-design
+	
+	and Golden Grid System by Joni Korpi
+	http://goldengridsystem.com/
+*/
+
+/* Mobile Layout: 480px and below. */
+
+@font-face {
+	font-family: Allerta;
+	src: url('fonts/Allerta-Regular.ttf');
+}
+@font-face {
+	font-family: PT Sans Normal;
+	src: url('fonts/PT_Sans-Web-Regular.ttf');
+}
+@font-face {
+	font-family: PT Sans Bold;
+	src: url('fonts/PT_Sans-Web-Bold.ttf');
+}
+
+body{
+ 
+    background-image: url(../images/background.jpg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+
+.gridContainer {
+	margin-left: auto;
+	margin-right: auto;
+	width: 96%;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+#Header {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+}
+.atras {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+	font-family: Allerta;
+	font-size:6vw;
+	color:#FFFFF;
+}
+.atras a{
+	text-decoration:none;
+	color:#FFF;
+	font-family:Allerta;
+}
+.atras a:hover{
+	text-decoration:none;
+	color:#FFF;
+	font-family:Allerta;
+	background-color:#c8c8c8;
+	opacity:28%;
+}
+
+.Opciones{
+    width: 100%;
+    height: 17px;
+    padding-right: 15px;
+}
+.Opciones a{
+    width: 27px;
+    height: 33px;
+    display: inline-block;
+    float: right;
+    padding-right: 10px;
+    background-size: contain;
+}
+.Opciones .btConfig{
+    background-image: url(../images/icoconfig.svg);
+	background-repeat:no-repeat;
+}
+.Opciones .btConfig:hover{
+	background-image:url(../images/btconfigOver.svg);
+	background-repeat:no-repeat;
+}
+
+.Opciones .btRefresh{
+    background-image: url(../images/recargar.svg);
+	background-repeat:no-repeat;
+}
+.Opciones .btRefresh:hover{
+    background-image: url(../images/btRefreshOver.svg);
+	background-repeat:no-repeat;
+}
+
+
+.Logo {
+	clear: both;
+	float: left;
+	margin-left: 0;
+	width: 100%;
+	display: block;
+
+    align-content: center;
+    display: block;
+    width: 278px;
+    height: 139px;
+    background-image: url(../images/imagopeque.svg);
+
+
+}

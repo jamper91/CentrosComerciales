@@ -1,4 +1,5 @@
 /*Esta pagina se encarga de listar los medios de transporte*/
+var idCentroComercial;
 $(document).ready(
     function()
     {
@@ -7,8 +8,37 @@ $(document).ready(
          {
              getBanner(null,"../");
              var parametros=getUrlVars();
-             getMediosTransporte(parametros["idCentroComercial"]);
+             idCentroComercial=parametros["idCentroComercial"];
+             //getMediosTransporte(idCentroComercial);
          })();
+        $("#lnkauto").click(
+            function(e)
+            {
+                e.preventDefault();
+                var url="5c.html?idMedioTransporte=1&idCentroComercial=$1";
+                url=url.replace("$1",idCentroComercial);
+                redirigir(url);
+            }
+        );
+        $("#lnktp").click(
+            function(e)
+            {
+                e.preventDefault();
+                var url="5c.html?idMedioTransporte=2&idCentroComercial=$1";
+                url=url.replace("$1",idCentroComercial);
+                redirigir(url);
+            }
+        );
+        $("#lnkotros").click(
+            function(e)
+            {
+                e.preventDefault();
+                var url="5c.html?idMedioTransporte=3&idCentroComercial=$1";
+                url=url.replace("$1",idCentroComercial);
+                redirigir(url);
+            }
+        );
+        
     }
 );
 

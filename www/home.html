@@ -1,19 +1,14 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
-<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
-<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html class="">
-<!--<![endif]-->
+
 <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
 <title>Centro Comercial</title>
+<link href='http://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
 <link href="css/Index.css" rel="stylesheet" type="text/css">
 <link href="css/boilerplate.css" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
+
+
 <link href="css/nivo-slider.css" rel="stylesheet" type="text/css">
 <link href="css/default.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -24,6 +19,8 @@ $(window).load(function() {
     $('#slider').nivoSlider();
 });
 </script>
+
+<script src="js/respond.min.js"></script>
 <script src='intelxdk.js'></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
@@ -36,56 +33,52 @@ $(window).load(function() {
 	};
 	document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 </script>
-<!-- 
-To learn more about the conditional comments around the html tags at the top of the file:
-paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
-
-Do the following if you're using your customized build of modernizr (http://www.modernizr.com/):
-* insert the link to your js here
-* remove the link below to the html5shiv
-* add the "no-js" class to the html tags at the top
-* you can also remove the link to respond.min.js if you included the MQ Polyfill in your modernizr build 
--->
-<!--[if lt IE 9]>
-<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<script src="js/respond.min.js"></script>
 </head>
 <body>
 <div class="gridContainer clearfix">
 
-	<header>
-    	
-        <div id="botonesArriba">
-        	<a id="btconfig" href=""></a>
-            <a id="btrefresh" href=""></a>
+  <div id="Header">
+        <div class="botonesArriba">
+            <a href="#" class="btrefresh"></a>
+        	<a href="#" class="btconfig"></a>
+
         </div>
         
-        <div id="Logocc">
-        	 <a href="Index.html"><img src="images/imagocc Home.svg" /></a>
-        </div>
+    <div class="Logocc">
+        	<a href="Index.html" class="logo"></a>
+    </div>
         
-        <div id="Slogan">
-        	<p>Encuentra donde comprar<br/>
-            Descubre como llegar</p>
+        <div class="Slogan">
+        	Encuentra donde comprar<br/>
+            Descubre como llegar
         </div>
-        
-    </header>
-    
-    <section>
-    
-    	<ul>
-        	<li id="BT"><a href="busqueda/1a.html">Buscar Tiendas</a></li>
-            <li id="BCC"><a href="busqueda/1b.html">Buscar Centros Comerciales</a></li>
-            <li id="PD"><a href="busqueda/6b.html">Promociones y Descuentos</a></li>
-            <li id="Noti"><a href="noticias.html">Noticias</a></li>
+  </div>
+  
+  <div class="contenido">
+      <ul class="menu">
+                <li class="BT">
+                    <a href="busqueda/1a.html" id="lnkBT">Buscar Tienda</a>
+                    <a class="go"></a>
+                </li>
+                <li class="BCC" >
+                    <a href="busqueda/1b.html" id="lnkBCC">Buscar Centro Comercial</a> 
+                    <a class="go"></a>
+                </li>
+                <li class="Promoydesc" id="lnkPromoydesc">
+                    <a href="busqueda/6b.html" id="lnkPromoydesc">Promociones y Descuentos</a> 
+                    <a class="go"></a>
+                </li>
+                <li class="Noticias" id="lnkNoticias">
+                    <a href="noticias.html" id="lnkNoticias">Noticias</a> 
+                    <a class="go"></a>
+                </li>
         </ul>
+   </div>
         
-    	
-    </section>
-    
-    <footer>
-    	<div id="Slider">
+  </div>
+  
+  <div id="footer">
+  	<div id="Slider">
         
         		<div class="slider-wrapper theme-default">
     				<div class="ribbon"></div>
@@ -96,13 +89,15 @@ Do the following if you're using your customized build of modernizr (http://www.
                      		 <img src="images/04.jpg" alt="" />
                       		 
     					</div>
-              		 </div>
-    	
-    </footer>
+               </div>
+  </div>
+  
 
+  
+  
 
+  
+  
 </div>
-
-
 </body>
 </html>

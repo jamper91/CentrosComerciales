@@ -32,9 +32,17 @@ $(document).ready(function()
         }
     );
 });
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 function getInfoLocal(idLocal)
 {
+    mostrarDialogo();
     var estaVacion=true;
     var url=url_base+"almacenes/getinformacionlocal.xml";
     var datos={
@@ -54,19 +62,20 @@ function getInfoLocal(idLocal)
                     horario=$("horario",obj).text();
                     descripcion=$("descripcion",obj).text();
                     
-                    
-                    $("#logo").attr("src",logo);
+                    if(logo)
+                        $("#logo").attr("src",logo);
                     $("#local").text(local);
                     $("#piso").text(piso);
                     $("#seccion").text(seccion);
                     $("#horario").text(horario);
-                    $("#descripcion").text(descripcion);
+                    $("#descripcion2").text(descripcion);
                     
                     //Modifico informacion de los botones, pero no sera visible al usuario
                     idCentroComercial=$("centroscomerciale_id",obj).text()
                     //$("#informacionCentroComercial").attr("idCentro",$("centroscomerciale_id",obj).text());
                 });
             }
+                ocultarDialogo();
                 if(estaVacio)
                  $("#centroscomerciales").append("Lo sentimos, no encontramos informacion");
             

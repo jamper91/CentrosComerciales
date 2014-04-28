@@ -1,16 +1,28 @@
-<!DOCTYPE html><!--HTML5 doctype-->
-<html>
+<!doctype html>
+
+<html class="">
+
 <head>
-	<title>Centros Comerciales</title>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-	<style type="text/css">
-		/* Prevent copy paste for all elements except text fields */
-		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
-		input, textarea  { -webkit-user-select:text; }
-		body { background-color:white; color:black }
-	</style>
-	<script src='../intelxdk.js'></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medio de Transporte 05B</title>
+<link href="../css/transporte.css" rel="stylesheet" type="text/css">
+<link href="../css/boilerplate.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
+
+<link href="../css/nivo-slider.css" rel="stylesheet" type="text/css">
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nivo.slider.pack.js"></script>
+
+<script type="text/javascript">
+$(window).load(function() {
+    $('#slider').nivoSlider();
+});
+</script>
+
+<script src="../js/respond.min.js"></script>
+<script src='../intelxdk.js'></script>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
     <!--<script type="text/javascript" src="js/jq.appframework.js"></script>-->
@@ -24,16 +36,75 @@
 		};
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 	</script>
-    
-
 </head>
 <body>
-	
-    <ul id="mediostransporte">
+
+
+  <div id="Header">
+  
+  		<div class="atras">
+            <a href="#"><img src="images/arrow-left.svg"> Atras</a>
+        </div>
         
-    </ul>
-    <br/>
-    <img id="banner" />
+        <div class="botonesArriba">
+            <a href="#" class="btrefresh"></a>
+        	<a href="#" class="btconfig"></a>
+
+        </div>
+        
+    <div class="Logocc">
+        	<a href="Index.html" class="logo"></a>
+    </div>
+    
+    <div class="titulo">
+        ENCUENTRA LA TIENDA QUE BUSCAS
+    </div>
+    
+    <div class="titulo2">
+        SELECCIONA TU MEDIO DE TRANSPORTE
+    </div>
+        
+
+  </div>
+  
+  <div id="Contenedor">
+      <ul class="menu" id="mediostransporte">
+                <li class="auto">
+                    <a href="#" id="lnkauto">Automóvil</a>
+                    <a class="go"></a>
+                </li>
+                <li class="tp" >
+                    <a href="#" id="lnktp">Transporte Público</a> 
+                    <a class="go"></a>
+                </li>
+                <li class="otros" id="lnkotros">
+                    <a href="#" id="lnkotros">Otros</a> 
+                    <a class="go"></a>
+                </li>
+
+        </ul>
+   </div>
+        
+  </div>
+ 
+  
+  <div id="footer">
+  	<div id="Slider">
+        
+        		<div class="slider-wrapper theme-default">
+    				<div class="ribbon"></div>
+    					<div id="slider" class="nivoSlider">
+                     		 <img src="../images/01.jpg" alt="" />
+    					</div>
+               </div>
+  </div>
+  
+
+  
+  
+
+  
+  
 
 </body>
 </html>

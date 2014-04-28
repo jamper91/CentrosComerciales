@@ -20,10 +20,18 @@ $(document).ready(function()
      })();
 });
 
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 
 function getCentrosComercialesByCiudad(urlD,idCiudad,nombreCiudad)
 {
+    mostrarDialogo();
     estaVacio=true;
     console.log("Entre con nombreCiudad: "+nombreCiudad);
     var url=url_base+"centroscomerciales/getcentroscomercialesbyciudad.xml";
@@ -35,13 +43,16 @@ function getCentrosComercialesByCiudad(urlD,idCiudad,nombreCiudad)
                  {
                      if(xml!=null)
                      {
-                         var html="<li><a href='$1?idCiudad=$2&nombreCiudad=$3&idCentroComercial=$4&nombreCentroComercial=$5'>$5</a></li>";
-                            html=html.replace("$1",urlD);
-                            html=html.replace("$2",idCiudad);
-                            html=html.replace("$3",nombreCiudad);
-                            html=html.replace("$4",0);
-                            html=html.replace("$5","Todos");
-                            html=html.replace("$5","Todos");
+                         var html="<li class='todos'>"+
+                                 "<a href='$1?idCiudad=$2&nombreCiudad=$3&idCentroComercial=$4&nombreCentroComercial=$5' id='lnktodos'>$5</a>"+
+                                 "<a class='go'></a>"+
+                                 "</li>";
+                        html=html.replace("$1",urlD);
+                        html=html.replace("$2",idCiudad);
+                        html=html.replace("$3",nombreCiudad);
+                        html=html.replace("$4",0);
+                        html=html.replace("$5","Todos");
+                        html=html.replace("$5","Todos");
                         $("#centroscomerciales").append(html);
                         $("datos",xml).each(function()
                         {
@@ -54,7 +65,10 @@ function getCentrosComercialesByCiudad(urlD,idCiudad,nombreCiudad)
                             if(valor)
                             {
                                 estaVacio=false;
-                                html="<li><a href='$1?idCiudad=$2&nombreCiudad=$3&idCentroComercial=$4&nombreCentroComercial=$5'>$5</a></li>";
+                                var html="<li class='todos'>"+
+                                         "<a href='$1?idCiudad=$2&nombreCiudad=$3&idCentroComercial=$4&nombreCentroComercial=$5' id='lnktodos'>$5</a>"+
+                                         "<a class='go'></a>"+
+                                         "</li>";
                                 html=html.replace("$1",urlD);
                                 html=html.replace("$2",idCiudad);
                                 html=html.replace("$3",nombreCiudad);
@@ -66,6 +80,7 @@ function getCentrosComercialesByCiudad(urlD,idCiudad,nombreCiudad)
 
                         });
                      }
+                     ocultarDialogo();
                      if(estaVacio)
                         $("#centroscomerciales").html("Lo sentimos, no encontramos informacion");
                      

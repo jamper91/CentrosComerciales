@@ -1,6 +1,26 @@
 /*var url_base="http://192.168.0.13/CentrosComercialesWeb/";*/
-var url_base="http://192.168.0.12/CentrosComercialesWeb/";
+var url_base="http://192.168.0.16/CentrosComercialesWeb/";
 
+$(document).ready(
+    function()
+    {
+        $(".atras").click(
+            function(e)   
+            {
+                e.preventDefault();
+                anterior();
+            }
+        );
+        $(".btconfig").click(
+            function(e)   
+            {
+                e.preventDefault();
+                redirigir("busqueda/7d.html");
+            }
+        );
+        
+    }
+);
 function salir()
 {
     navigator.app.exitApp();
@@ -8,6 +28,14 @@ function salir()
 function anterior()
 {
     window.history.back();
+}
+function mostrardialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultardialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
 }
 /*Esta funcion se encarga de realizar una llamada ajax y retornar el resultado, retorna null en caso de algun error
 var datos = {
@@ -73,7 +101,7 @@ categoria: Categoria donde se encuentra
 tienda: Id de la tienda
 */
 
-function getBanner(vista,idCentroComercial,idCategoria,idAlmacen)
+function getBanner(vista,idCentroComercial,idCategoria,idAlmacen,ruta)
 {
     var url="";
     var datos={
@@ -228,6 +256,7 @@ function cambiarAcentos2(texto)
     return texto;
     
 }
+
 
 /* ##################################### VARIABLES DE SESION ##################################### */
 function crearVariableSesion(nombre, valor)
