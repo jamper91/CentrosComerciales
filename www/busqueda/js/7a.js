@@ -10,12 +10,26 @@ $(document).ready(
 intel.xdk.facebook.showNewsFeedDialog(objParameters); 
             }
         );
-        $("#google").click(
+        $("#facebook").click(
             function(e)
             {
                 e.preventDefault();
                 var objParameters = { "picture":"http://fbrell.com/f8.jpg", "name":"Facebook Dialog", "caption":"This is my caption", "description":"Using Dialogs to interact with users.", "link":"http://xdk.intel.com" } 
 intel.xdk.facebook.showNewsFeedDialog(objParameters); 
+            }
+        );
+        $("#twitter").click(
+            function(e)
+            {
+                e.preventDefault();
+                alert("Lo sentimos, esta funcion aun no se ha implementado");
+            }
+        );
+        $("#google").click(
+            function(e)
+            {
+                e.preventDefault();
+                alert("Lo sentimos, esta funcion aun no se ha implementado");
             }
         );
     }

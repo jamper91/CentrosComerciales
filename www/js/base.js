@@ -14,6 +14,7 @@ $(document).ready(
         $(".btconfig").click(
             function(e)   
             {
+                console.log("Di clic en configuracion");
                 e.preventDefault();
                 redirigir("busqueda/7d.html");
             }

@@ -11,16 +11,25 @@ $(document).ready(
          })();
     }
 );
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 function getPisos(idCentroComercial)
 {
+    mostrarDialogo();
+    var estaVacio=true;
     var url=url_base+"pisos/getpisosbycentrocomercial.xml";
     var datos={
         idCentroComercial:idCentroComercial
     };
     ajax(url,datos,function(xml)
          {
-             if(xml!=null)
+            if(xml!=null)
             {
                 $("datos",xml).each(function()
                 {
@@ -28,24 +37,25 @@ function getPisos(idCentroComercial)
                     var nombre,id;
                     nombre=$("nombre",obj).text();
                     id=$("id",obj).text();
-                    var html="<li><a href='5e.html?idPiso=$1'>$2</a></li>";
-                    html=html.replace("$1",id);
-                    html=html.replace("$2",nombre);
-                    $("#pisos").append(html);
+                    if(id)
+                    {
+                        estaVacio=false;
+                        var html="<li class='nivel' id='pisos'>"+
+                        "<a href='5e.html?idPiso=$1' id='lnknivel'>$2</a>"+
+                        "<a class='go'></a>"+
+                        "</li>";
+                        html=html.replace("$1",id);
+                        html=html.replace("$2",nombre);
+                        $("#pisos").append(html);
+                    }
+                    
                 });
-            }else
-            {
-                var nombre="Piso 1",id=1;
-                var html="<li><a href='5e.html?idPiso=$1'>$2</a></li>";
-                html=html.replace("$1",id);
-                html=html.replace("$2",nombre);
-                $("#pisos").append(html);
-                nombre="Piso 2",id=2;
-                html="<li><a href='5e.html?idPiso=$1'>$2</a></li>";
-                html=html.replace("$1",id);
-                html=html.replace("$2",nombre);
-                $("#pisos").append(html);
             }
+             ocultarDialogo();
+             if(estaVacio)
+             {
+                 $("#pisos").append("Lo sentimos, no conseguimos datos");
+             }
          });
     
     

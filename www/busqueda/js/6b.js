@@ -10,9 +10,18 @@ $(document).ready(
          })();
     }
 );
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 function getPromociones(idCentroComercial)
 {
+    mostrarDialogo();
+    var estaVacio=true;
     var url=url_base+"promociones/getpromociones.xml";
     var datos={
         idCentroComercial:idCentroComercial
@@ -28,15 +37,22 @@ function getPromociones(idCentroComercial)
                             var src,id;
                             src=$("banner",obj).text();
                             id=$("id",obj).text();
-                            var html="<li><a href='$2'><img src='$1' /></a></li>";
-                            html=html.replace("$1",src);
-                            html=html.replace("$2","6a.html?idPromocion="+id);
+                            if(id)
+                            {
+                                estaVacio=false;
+                                var html="<a href='$2'><img src='$1' /></a>";
+                                html=html.replace("$1",src);
+                                html=html.replace("$2","6a.html?idPromocion="+id);
                             $("#promociones").append(html);
+                            }
+                            
                         });
-                    }else
-                    {
-
                     }
+                     ocultarDialogo();
+                     if(estaVacio)
+                     {
+                         $("#promociones").html("Lo sentimos, no conseguimos informacion");
+                     }
                  });
     
     

@@ -176,9 +176,57 @@ body{
 	display:inline-block;
 }
 
+.btBuscar{
+	background-image:url(../images/btBuscar.svg);
+	background-size:100%;
+	background-repeat:no-repeat;
+	width:332px;
+	height:55px;
+	float:left;
+	display:inline-block;
+	font-family: Allerta;
+	color:#FFF;
+	text-align:center;
+	padding-top:10px;
+	margin-left:40px;
+}
+.btBuscar a{
+	text-decoration:none;
+	color:#FFF;
+	font-family: Allerta;
+	font-size:28px;
+	text-align:center;
+	width:332px;
+	height:55px;
+	display:inline-block;
+}
+.btBuscar a:hover{
+	text-decoration:none;
+	color:#FFF;
+	font-family: Allerta;
+	font-size:28px;
+	text-align:center;
+	width:332px;
+	height:55px;
+	display:inline-block;
+}
 
-
-
+#comentario{
+	float:left;
+	width:100%;
+	height:200px;
+	margin-top:0px;
+	margin-left:0px;
+	background-color:#FFF;
+	background-size:100% auto;
+	font-family:'Allerta', sans-serif;
+	text-align:center;
+	font-size:24px;
+	text-align:center;
+	color: #CCC;
+	border:hidden;
+	display:inline-block;
+}
 
 [contenteditable]{
 	float:left;

@@ -238,6 +238,40 @@ body{
     background-repeat: no-repeat;
     background-position: left center;
 }
+.btBuscar{
+	background-image:url(../images/btBuscar.svg);
+	background-size:100%;
+	background-repeat:no-repeat;
+	width:332px;
+	height:55px;
+	float:left;
+	display:inline-block;
+	font-family: Allerta;
+	color:#FFF;
+	text-align:center;
+	padding-top:10px;
+	margin-left:40px;
+}
+.btBuscar a{
+	text-decoration:none;
+	color:#FFF;
+	font-family: Allerta;
+	font-size:28px;
+	text-align:center;
+	width:332px;
+	height:55px;
+	display:inline-block;
+}
+.btBuscar a:hover{
+	text-decoration:none;
+	color:#FFF;
+	font-family: Allerta;
+	font-size:28px;
+	text-align:center;
+	width:332px;
+	height:55px;
+	display:inline-block;
+}
 
 
 

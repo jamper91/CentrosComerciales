@@ -1,35 +1,88 @@
-<!DOCTYPE html><!--HTML5 doctype-->
-<html>
-<head>
-	<title>Centros Comerciales</title>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
-	<style type="text/css">
-		/* Prevent copy paste for all elements except text fields */
-		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
-		input, textarea  { -webkit-user-select:text; }
-		body { background-color:white; color:black }
-	</style>
-	<script src='../intelxdk.js'></script>
-    <script type="text/javascript" src="../cordova.js"></script>
-    <script type="text/javascript" src="../js/base.js"></script>
-	<script type="text/javascript">
-		/* This code is used to run as soon as Intel activates */
-		var onDeviceReady=function(){
-		//hide splash screen
-		intel.xdk.device.hideSplashScreen();
-		};
-		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
-	</script>
-    
+<!doctype html>
 
+<html class="">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acerca De 07B</title>
+<link href="../css/acercade.css" rel="stylesheet" type="text/css">
+<link href="../css/boilerplate.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
+
+<link href="../css/nivo-slider.css" rel="stylesheet" type="text/css">
+<link href="../css/default.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.nivo.slider.pack.js"></script>
+
+<script type="text/javascript">
+$(window).load(function() {
+    $('#slider').nivoSlider();
+});
+</script>
+
+<script src="../js/respond.min.js"></script>
+<script src='../intelxdk.js'></script>
+<script type="text/javascript" src="../cordova.js"></script>
+<script type="text/javascript" src="../js/base.js"></script>
+<script type="text/javascript">
+	/* This code is used to run as soon as Intel activates */
+	var onDeviceReady=function(){
+	//hide splash screen
+	intel.xdk.device.hideSplashScreen();
+	};
+	document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+</script>
 </head>
 <body>
+
+
+  <div id="Header">
+  
+  		<div class="atras">
+            <a href="#"><img src="../images/arrow-left.svg"> Atras</a>
+        </div>
+        
+        <div class="botonesArriba">
+            <a href="#" class="btrefresh"></a>
+        	<a href="#" class="btconfig"></a>
+
+        </div>
+        
+    <div class="Logocc">
+        	<a href="Index.html" class="logo"></a>
+    </div>
     
-    Acerca de Compras:
+
+  </div>
+  
+
+      <div id="Arriba">
+      	<div id="Imagen">
+      
+            <h1>ACERCA DE DE COMPRAS</h1>
+        </div>
+        
+        <div id="nombre">
+			<h3>De Compras es una app<br> 
+                desarrollada por Apliko 2014<br>
+                Todos los derechos reservados</h3>
+                
+            <p>Mas información en<br>
+				<a href="www.apliko.co">www.apliko.co</a></p>
+        </div>
+      </div>
     
-    De Compras es una aplicacion desarollada por Apliko 2014.
-    Todos los derechos reservado.
-    Mas informacón en www.apliko.co
+
+ 
+
+  
+
+  
+  
+
+  
+  
+
 </body>
 </html>

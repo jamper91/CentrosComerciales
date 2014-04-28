@@ -11,9 +11,18 @@ $(document).ready(
          })();
     }
 );
-
+function mostrarDialogo()
+{
+    $('#element_to_pop_up').bPopup();
+}
+function ocultarDialogo()
+{
+    $('#element_to_pop_up').bPopup().close();
+}
 function getLocales(idCentroComercial)
 {
+    mostrarDialogo();
+    var estaVacio=true;
     var url=url_base+"almacenes/getlocalesbycentrocomercial.xml";
     var datos={
         idCentroComercial:idCentroComercial
@@ -24,19 +33,29 @@ function getLocales(idCentroComercial)
                     {
                         $("datos",xml).each(function()
                         {
-                            var obj=$(this).find("a");
+                            var obj=$(this).find("Almacene");
                             var nombre,id;
                             nombre=$("nombre",obj).text();
                             id=$("id",obj).text();
-                            var html="<li><a href='3.html?idLocal=$2'>$1</a></li>";
-                            html=html.replace("$1",nombre);
-                            html=html.replace("$2",id);
-                            $("#locales").append(html);
+                            if(id)
+                            {
+                                estaVacio=false;
+                                var html="<li class='todos'>"+
+                        "<a href='3.html?idLocal=$2' id='lnktodos'>$1</a>"+
+                        "<a class='go'></a>"+
+                        "</li>";
+                                html=html.replace("$1",nombre);
+                                html=html.replace("$2",id);
+                                $("#locales").append(html);
+                            }
+                            
                         });
-                    }else
-                    {
-
                     }
+                     ocultarDialogo();
+                     if(estaVacio)
+                     {
+                         $("#locales").html("Lo sentimos, no conseguimos informacion");
+                     }
                  });
     
     
