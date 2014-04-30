@@ -1,22 +1,28 @@
-
+/* This code is used to run as soon as Intel activates */
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+     var parametros=getUrlVars();
+     //Determino si llego el id de la ciudad
+     if(parametros["idCiudad"])
+     {
+         var idCiudad,nombreCiudad,urlD;
+         idCiudad=parametros["idCiudad"];
+         nombreCiudad=parametros["nombreCiudad"];
+         nombreCiudad=cambiarAcentos(nombreCiudad);
+         urlD=parametros["url"];
+         getCentrosComercialesByCiudad(urlD,idCiudad,nombreCiudad);
+     }
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 
 $(document).ready(function()
 {
     /*Funciones autoejecutables*/
     (function()
      {
-         //getBanner(null,"../");
-         var parametros=getUrlVars();
-         //Determino si llego el id de la ciudad
-         if(parametros["idCiudad"])
-         {
-             var idCiudad,nombreCiudad,urlD;
-             idCiudad=parametros["idCiudad"];
-             nombreCiudad=parametros["nombreCiudad"];
-             nombreCiudad=cambiarAcentos(nombreCiudad);
-             urlD=parametros["url"];
-             getCentrosComercialesByCiudad(urlD,idCiudad,nombreCiudad);
-         }
+         
      })();
 });
 

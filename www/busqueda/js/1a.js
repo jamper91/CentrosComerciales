@@ -3,12 +3,11 @@ var parametros=getUrlVars();
 var idCiudad,nombreCiudad;
 var idCentro,nombreCentro;
 var idCategoria,nombreCategoria;
-$(document).ready(function()
+/* This code is used to run as soon as Intel activates */
+var onDeviceReady=function()
 {
-    /*Funciones autoejecutables*/
-    (function()
-     {
-         //getBanner(null,"../");
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
          autocompletar();
          //Determino si llego el id de la ciudad
          if(parametros["idCiudad"])
@@ -58,24 +57,19 @@ $(document).ready(function()
               
              
          }
+         $('#slider').nivoSlider();
          getBanner("1a",null,null,null,"../");
+         
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
+$(document).ready(function()
+{
+    /*Funciones autoejecutables*/
+    (function()
+     {
+         
      })();
-    
-    /*Function que se activa al cambiar un elemento del select ciudades*/
-    $("#ciudades").change(function()
-    {
-        /*Obtengo el elemento seleccionado*/
-        var idCiudad=$("#ciudades").val();
-        if(idCiudad!=0)
-            getCentrosComercialesByCiudad(idCiudad);
-    });
-    /*Funcion que se activa al cambiar un elemento del select centros comerciales*/
-    $("#centroscomerciales").change(function()
-    {
-        /*Obtengo el elemento seleccionado*/
-        var idCentroComercial=$("#centroscomerciales").val();
-        getCategoriasByCentroComercial(idCentroComercial);
-    });
     $("#btnBuscar").click(
         function(e)
         {

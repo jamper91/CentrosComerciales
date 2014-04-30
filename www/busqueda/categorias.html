@@ -31,7 +31,7 @@ Do the following if you're using your customized build of modernizr (http://www.
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-<script type="text/javascript" charset="utf-8" src='../intelxdk.js'></script>
+    <script type="text/javascript" charset="utf-8" src='../intelxdk.js'></script>
     <script type="text/javascript" src="../xhr.js"></script>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
@@ -41,13 +41,7 @@ Do the following if you're using your customized build of modernizr (http://www.
     <script type="text/javascript" src="js/categorias.js"></script>
     
 	<script type="text/javascript">
-		/* This code is used to run as soon as Intel activates */
-		var onDeviceReady=function()
-        {
-            //hide splash screen
-            intel.xdk.device.hideSplashScreen();
-		};
-		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+		
 	</script>
 <body>
 

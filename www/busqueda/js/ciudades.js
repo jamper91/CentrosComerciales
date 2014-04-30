@@ -1,12 +1,21 @@
 //Se encarga de listar las ciudades y mostrarlas en una lista
+/* This code is used to run as soon as Intel activates */
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    var parametros=getUrlVars();
+    getCiudades(parametros["url"]);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
 
 $(document).ready(function()
 {
     /*Funciones autoejecutables*/
     (function()
      {
-         var parametros=getUrlVars();
-         getCiudades(parametros["url"]);
+         
      })();
     
 });

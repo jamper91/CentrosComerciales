@@ -14,11 +14,25 @@ $(document).ready(
         $(".btconfig").click(
             function(e)   
             {
-                console.log("Di clic en configuracion");
                 e.preventDefault();
                 redirigir("busqueda/7d.html");
             }
         );
+        $(".btrefresh").click(
+            function(e)   
+            {
+                e.preventDefault();
+                location.reload();
+            }
+        );
+        $(".Logocc").click(
+            function(e)   
+            {
+                redirigir("home.html");
+            }
+        );
+        
+        
         
     }
 );
@@ -104,28 +118,33 @@ tienda: Id de la tienda
 
 function getBanner(vista,idCentroComercial,idCategoria,idAlmacen,ruta)
 {
-    var url="";
+    var url=url_base+"banners/getbanners.xml";
     var datos={
         vista:vista,
         idCentroComercial:idCentroComercial,
         idCategoria:idCategoria,
         idAlmacen:idAlmacen
     };
-    var xml=ajax(url,datos);
-    if(xml!=null)
-    {
-        log("base","getBanner","el xml no es nulo");
-        $("datos",xml).each(
-            function()
-            {
-                var urlImagen;
-                $("#banner").attr("src",urlImagen);
-            }
-        );
-    }else{
-        log("base","getBanner","el xml es nulo");
-        $("#banner").attr("src",ruta+"js/owl-carousel/img/responsive.png");
-    }
+    ajax(url,datos,
+                 function(xml)
+                 {
+                    if(xml!=null)
+                    {
+                        $("#slider").html("");
+                        $("datos",xml).each(
+                            function()
+                            {
+                                var obj=$(this).find("Banner");
+                                var imagen=$("imagen",obj).text();
+                                var html='<img src="$1" />';
+                                html=html.replace("$1",url_base+imagen);
+                                $("#slider").append(html);
+                            }
+                        );
+                        $('#slider').nivoSlider();
+                    }
+                 });
+    
         
     
 }

@@ -1,11 +1,12 @@
-$(document).ready(function()
-{
-    /*Funciones que se ejecutan inmediatamente despues que la pagina se carga*/
-    (function()
-     {
-         
-     })();
-});
+
+/* This code is used to run as soon as Intel activates */
+var onDeviceReady=function(){
+//hide splash screen
+intel.xdk.device.hideSplashScreen();
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
+
 /*Esta funcion se encarga de obtener las imagenes del banner inferior*/
 function banner()
 {

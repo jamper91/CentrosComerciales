@@ -1,11 +1,22 @@
+
+
 /*Esta pagina se encarga de recibir los parametros de Ciudad, Centro Comercial y categoria y listara todos los locales que cumplan dichos parametros*/
+
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    var parametros=getUrlVars();
+    getBanner("2a",parametros["idCentroComercial"],parametros["idCategoria"],"null","null");
+    getLocales(parametros["idCiudad"],parametros["idCentroComercial"],parametros["idCategoria"]);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(function(e)
 {
     (function()
      {
-         getBanner(null,"../");
-         var parametros=getUrlVars();
-         getLocales(parametros["idCiudad"],parametros["idCentroComercial"],parametros["idCategoria"]);
+         
      })();
     
 });

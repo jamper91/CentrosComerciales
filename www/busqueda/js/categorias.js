@@ -1,25 +1,29 @@
 
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    var parametros=getUrlVars();
+     //Determino si llego el id de la ciudad
+     if(parametros["idCiudad"])
+     {
+         var idCiudad,nombreCiudad,urlD,idCentroComercial,nombreCentroComercial;
+         idCiudad=parametros["idCiudad"];
+         nombreCiudad=parametros["nombreCiudad"];
+         urlD=parametros["url"];
+         idCentroComercial=parametros["idCentroComercial"];
+         nombreCentroComercial=parametros["nombreCentroComercial"];
+         urlD=urlD+"?idCiudad="+idCiudad+"&nombreCiudad="+nombreCiudad+"&idCentroComercial="+idCentroComercial+"&nombreCentroComercial="+nombreCentroComercial;
+         getCategoriasByCentroComercial(urlD,idCentroComercial);
+     }
+    
+    
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 
 $(document).ready(function()
 {
-    /*Funciones autoejecutables*/
-    (function()
-     {
-         //getBanner(null,"../");
-         var parametros=getUrlVars();
-         //Determino si llego el id de la ciudad
-         if(parametros["idCiudad"])
-         {
-             var idCiudad,nombreCiudad,urlD,idCentroComercial,nombreCentroComercial;
-             idCiudad=parametros["idCiudad"];
-             nombreCiudad=parametros["nombreCiudad"];
-             urlD=parametros["url"];
-             idCentroComercial=parametros["idCentroComercial"];
-             nombreCentroComercial=parametros["nombreCentroComercial"];
-             urlD=urlD+"?idCiudad="+idCiudad+"&nombreCiudad="+nombreCiudad+"&idCentroComercial="+idCentroComercial+"&nombreCentroComercial="+nombreCentroComercial;
-             getCategoriasByCentroComercial(urlD,idCentroComercial);
-         }
-     })();
+
 });
 function mostrarDialogo()
 {

@@ -2,24 +2,33 @@
 Esta pagina permite buscar centros comerciales por ciudad, o nombre
 */
 var idCiudad,nombreCiudad;
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    autocompletar();
+    var parametros=getUrlVars();
+    if(parametros["idCiudad"]){
+     idCiudad=parametros["idCiudad"];
+     nombreCiudad=parametros["nombreCiudad"];
+     nombreCiudad=cambiarAcentos(nombreCiudad);
+     nombreCiudad=cambiarAcentos2(nombreCiudad);
+     $("#lnkCiudad").html(nombreCiudad);
+    }else{
+     idCiudad=getIdCiudad();
+     $("#lnkCiudad").html(getNombreCiudad());
+    }
+    getBanner("1b","null","null","null","null");
+    
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
 $(document).ready(function()
 {
     (function()
      {
-         getBanner(null,"../");
-         //getCiudades();
-         autocompletar();
-         var parametros=getUrlVars();
-         if(parametros["idCiudad"]){
-             idCiudad=parametros["idCiudad"];
-             nombreCiudad=parametros["nombreCiudad"];
-             nombreCiudad=cambiarAcentos(nombreCiudad);
-             nombreCiudad=cambiarAcentos2(nombreCiudad);
-             $("#lnkCiudad").html(nombreCiudad);
-         }else{
-             idCiudad=getIdCiudad();
-             $("#lnkCiudad").html(getNombreCiudad());
-         }
+         
          
      })();
     /*Esta funcion se encarga de caputara cuando el usario le da clic al boton buscar*/
