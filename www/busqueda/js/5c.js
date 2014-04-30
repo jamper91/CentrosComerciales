@@ -1,13 +1,20 @@
 /*Esta pagina se encarga de mostrar informacion , dependiendo de los datos recibidos */
+var onDeviceReady=function(){
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    var parametros=getUrlVars();
+    getBanner("5c",parametros["idCentroComercial"],"null","null","null");
+    getInformacion(parametros["idMedioTransporte"],parametros["idCentroComercial"]);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(
     function()
     {
         /*Funciones autoejecutables*/
         (function()
          {
-             //getBanner(null,"../");
-             var parametros=getUrlVars();
-             getInformacion(parametros["idMedioTransporte"],parametros["idCentroComercial"]);
+             
          })();
     }
 );

@@ -1,14 +1,23 @@
 /*Esta pagina se encarga de listar los medios de transporte*/
 var idCentroComercial;
+
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    var parametros=getUrlVars();
+    idCentroComercial=parametros["idCentroComercial"];
+    getBanner("5b",idCentroComercial,"null","null","null");
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(
     function()
     {
         /*Funciones autoejecutables*/
         (function()
          {
-             getBanner(null,"../");
-             var parametros=getUrlVars();
-             idCentroComercial=parametros["idCentroComercial"];
+             
              //getMediosTransporte(idCentroComercial);
          })();
         $("#lnkauto").click(

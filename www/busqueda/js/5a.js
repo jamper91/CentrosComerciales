@@ -1,13 +1,21 @@
 /*Esta pagina se encarga de mostrar informacion de un centrocomercial en especifico*/
 var idCentroComercial;
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    var parametros=getUrlVars();
+    idCentroComercial=parametros["idCentroComercial"];
+    getBanner("5a",idCentroComercial,"null","null","null");
+    getInfoCentroComercial(idCentroComercial);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(function()
 {
     $(function()
       {
-          /*getBanner(null,"../");*/
-          var parametros=getUrlVars();
-          idCentroComercial=parametros["idCentroComercial"]
-          getInfoCentroComercial(idCentroComercial);
+          
       }
      );
     $("#tiendas").click(
@@ -87,6 +95,7 @@ function getInfoCentroComercial(idCentroComercial)
                     obj=$(this).find("Ciudade");
                     ciudad=$("nombre",obj).text();
                     ciudad=cambiarAcentos2(ciudad);
+                    console.log("logo: "+logo);
                     $("#logo").attr("src","../images/logos/"+logo);
                     $("#ciudad").text(ciudad);
                     $("#horario").text(horario);

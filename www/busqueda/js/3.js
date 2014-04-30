@@ -1,12 +1,23 @@
 /*Esta pagina se encarga de mostrar informacion de un local en especifico*/
-var idCentroComercial;
+var idCentroComercial,idLocal;
+
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    var parametros=getUrlVars();
+    idLocal=parametros["idLocal"];
+    getBanner("3","null","null",idLocal,"null");
+    getInfoLocal(idLocal);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
 $(document).ready(function()
 {
     $(function()
       {
-          getBanner(null,"../");
-          var parametros=getUrlVars();
-          getInfoLocal(parametros["idLocal"]);
+          
       }
      );
     $("#comoLlegar").click(
@@ -18,6 +29,7 @@ $(document).ready(function()
     $("#promociones").click(
         function(e)
         {
+            redirigir("6b.html?idCentroComercial="+idCentroComercial);
         }
     );
     $("#informacionCentroComercial").click(

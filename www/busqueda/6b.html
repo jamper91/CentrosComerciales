@@ -9,22 +9,13 @@
 <link href="../css/banners.css" rel="stylesheet" type="text/css">
 <link href="../css/boilerplate.css" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
-<script src='../intelxdk.js'></script>
+<script type="text/javascript" src='../intelxdk.js'></script>
+<script type="text/javascript" src="../xhr.js"></script>
 <script type="text/javascript" src="../cordova.js"></script>
 <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="../js/jquery.bpopup.min.js"></script>
 <script type="text/javascript" src="../js/base.js"></script>
 <script type="text/javascript" src="js/6b.js"></script>
-<script type="text/javascript">
-	/* This code is used to run as soon as Intel activates */
-	var onDeviceReady=function(){
-	//hide splash screen
-	intel.xdk.device.hideSplashScreen();
-	};
-	document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
-</script>
-
-
 </head>
 <body>
 

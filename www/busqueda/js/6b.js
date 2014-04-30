@@ -1,12 +1,19 @@
 /*Esta pagina se encarga de mostrar las promociones */
+var onDeviceReady=function(){
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    var parametros=getUrlVars();
+    getPromociones(parametros["idCentroComercial"]);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
 $(document).ready(
     function()
     {
         /*Funciones autoejecutables*/
         (function()
          {
-             var parametros=getUrlVars();
-             getPromociones(parametros["idCentroComercial"]);
+             
          })();
     }
 );

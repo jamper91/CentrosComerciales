@@ -14,23 +14,31 @@ var idO1,idF1;
     */
     var x0,y0,idE0,bE0,ex0,ey0,p0,urlM;
     var x1,y1,ex1,ey1,p1;
+
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+      var parametros=getUrlVars();
+      getBanner("4b","null","null",parametros["idO"],"null");
+      mostrarDialogo();
+      obtenerCoordenadas(parametros["idO"],parametros["idF"],function()
+                         {
+                             ini(urlM);
+                             obtemerCoordenadas2(parametros["idF"],function()
+                                                 {
+                                                     analisis();
+                                                     ocultarDialogo();
+                                                 });
+                         });
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(function()
 {
     (function()
       {
-          /*getBanner(null,"../");*/
-          var parametros=getUrlVars();
-          mostrarDialogo();
-          obtenerCoordenadas(parametros["idO"],parametros["idF"],function()
-                             {
-                                 console.log("CAsi entro");
-                                 ini(urlM);
-                                 obtemerCoordenadas2(parametros["idF"],function()
-                                                     {
-                                                         analisis();
-                                                         ocultarDialogo();
-                                                     });
-                             });
+          
       }
      )();
     $("#continuar").click(

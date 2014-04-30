@@ -1,13 +1,20 @@
 /*Esta pagina se encarga de mostrar los loscales del centro comercial */
+var onDeviceReady=function(){
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    var parametros=getUrlVars();
+    getBanner("5g",parametros["idCentroComercial"],"null","null","null");
+    getLocales(parametros["idCentroComercial"]);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(
     function()
     {
         /*Funciones autoejecutables*/
         (function()
          {
-             getBanner(null,"../");
-             var parametros=getUrlVars();
-             getLocales(parametros["idCentroComercial"]);
+             
          })();
     }
 );

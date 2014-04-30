@@ -1,13 +1,20 @@
 /*Esta pagina se de mostrar una mapa de un piso en especifico */
+var onDeviceReady=function(){
+	//hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    var parametros=getUrlVars();
+    //getBanner(null,"../");
+    getMapa(parametros["idPiso"]);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(
     function()
     {
         /*Funciones autoejecutables*/
         (function()
          {
-             getBanner(null,"../");
-             var parametros=getUrlVars();
-             getMapa(parametros["idPiso"]);
+             
          })();
     }
 );

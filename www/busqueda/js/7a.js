@@ -1,3 +1,10 @@
+
+/* This code is used to run as soon as Intel activates */
+var onDeviceReady=function(){
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(
     function ()
     {

@@ -1,14 +1,21 @@
 /*Esta pagina se encarga de listar los pisos del centro comercial */
+var onDeviceReady=function(){
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    /*Funciones autoejecutables*/
+    (function()
+     {
+         
+         var parametros=getUrlVars();
+         getBanner("5d",parametros["idCentroComercial"],"null","null","null");
+         getPisos(parametros["idCentroComercial"]);
+     })();
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(
     function()
     {
-        /*Funciones autoejecutables*/
-        (function()
-         {
-             getBanner(null,"../");
-             var parametros=getUrlVars();
-             getPisos(parametros["idCentroComercial"]);
-         })();
+        
     }
 );
 function mostrarDialogo()

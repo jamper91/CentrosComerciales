@@ -1,14 +1,22 @@
 /*Esta pagina se encarga de listar los centros comerciales de una ciudad dada*/
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    var parametros=getUrlVars();
+    getBanner("2c","null","null","null","null");
+    var idCiudad=parametros["idCiudad"];
+    getCentrosComerciales(idCiudad);
+};
+    document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 $(document).ready(
     function()
     {
         /*Funciones autoejecutables*/
         (function()
          {
-             getBanner(null,"../");
-             var parametros=getUrlVars();
-             var idCiudad=parametros["idCiudad"];
-             getCentrosComerciales(idCiudad);
+             
          })();
     }
 );

@@ -4,13 +4,21 @@ local al cual quiere ir*/
 /*Estas variables almacena los ids del local de origen y del local de destino*/
 var  origen=null,fin=null;
 
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    var parametros=getUrlVars();
+    getBanner("4a",parametros["idCentroComercial"],"null","null","null");
+    autocompletar(parametros["idCentroComercial"]);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
 $(document).ready(function()
 {
     (function()
       {
-          var parametros=getUrlVars();
-          /*getBanner(null,"../");*/
-          autocompletar(parametros["idCentroComercial"]);
+          
       }
      )();
     $("#verMapa").click(

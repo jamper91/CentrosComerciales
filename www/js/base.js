@@ -1,5 +1,12 @@
 /*var url_base="http://192.168.0.13/CentrosComercialesWeb/";*/
-var url_base="http://192.168.0.16/CentrosComercialesWeb/";
+var url_base="http://majoris.apliko.co/";
+
+var onDeviceReady=function()
+{
+    checkInternet()
+    
+    
+};
 
 $(document).ready(
     function()
@@ -15,20 +22,22 @@ $(document).ready(
             function(e)   
             {
                 e.preventDefault();
-                redirigir("busqueda/7d.html");
+                redirigir("busqueda/7.html");
             }
         );
         $(".btrefresh").click(
             function(e)   
             {
                 e.preventDefault();
-                location.reload();
+                //location.reload();
+                
             }
         );
-        $(".Logocc").click(
+        $(".logo").click(
             function(e)   
             {
-                redirigir("home.html");
+                e.preventDefault();
+                redirigir("../home.html");
             }
         );
         
@@ -36,6 +45,17 @@ $(document).ready(
         
     }
 );
+
+function checkInternet()
+{
+    console.log("intel.xdk.device.connection: "+intel.xdk.device.connection);
+    if(intel.xdk.device.connection=="none")
+    {
+        alert("Lo sentimos, no hay conexion a internet");
+        redirigir("home.html");
+    }
+    return true;
+}
 function salir()
 {
     navigator.app.exitApp();
@@ -63,6 +83,7 @@ var datos = {
 */
 function ajax(url2, datos, callback)
 {
+    checkInternet();
     var retornar=null;
     $.ajax({
         url: url2,

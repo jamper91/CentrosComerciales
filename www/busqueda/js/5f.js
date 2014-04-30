@@ -1,13 +1,21 @@
 /*Esta pagina se encarga de mostrar los servicios del centro comercial */
+var onDeviceReady=function(){
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    
+    var parametros=getUrlVars();
+    getBanner("5f",parametros["idCentroComercial"],"null","null","null");
+    getServicios(parametros["idCentroComercial"]);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
 $(document).ready(
     function()
     {
         /*Funciones autoejecutables*/
         (function()
          {
-             getBanner(null,"../");
-             var parametros=getUrlVars();
-             getServicios(parametros["idCentroComercial"]);
+             
          })();
     }
 );

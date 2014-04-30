@@ -1,11 +1,19 @@
 //Esta pagina se encarga de recibir el id de un local y se encarga de listar todos aquello centros comerciales en los que se encuentra dicho local
+var onDeviceReady=function()
+{
+    //hide splash screen
+    intel.xdk.device.hideSplashScreen();
+    var parametros=getUrlVars();
+    getBanner("2b","null","null",parametros["idLocal"],"null");
+    getCentrosComercialesByLocal(parametros["idLocal"]);
+};
+document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
 $(document).ready(function()
 {
     $(function()
       {
-          getBanner(null,"../");
-          var parametros=getUrlVars();
-          getCentrosComercialesByLocal(parametros["idLocal"]);
+          
       }
      );
 });
